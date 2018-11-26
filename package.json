@@ -7,15 +7,21 @@
     "@types/node": "10.12.10",
     "@types/react": "16.7.7",
     "@types/react-dom": "16.0.10",
+    "@types/react-loadable": "^5.4.2",
     "@types/react-router-dom": "^4.3.1",
+    "@types/redux": "^3.6.0",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
+    "react-loadable": "^5.5.0",
     "react-router-dom": "^4.3.1",
     "react-scripts": "2.1.1",
+    "redux": "^4.0.1",
+    "source-map-explorer": "^1.6.0",
     "typescript": "3.1.6"
   },
   "homepage": "https://afaya.github.io/not-a-hub",
   "scripts": {
+    "analyze": "source-map-explorer build/static/js/main.*",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -34,6 +40,7 @@
   ],
   "devDependencies": {
     "gh-pages": "^2.0.1",
-    "prettier": "1.15.2"
+    "prettier": "1.15.2",
+    "tslint": "^5.11.0"
   }
 }

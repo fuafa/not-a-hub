@@ -1,7 +1,12 @@
 {
   "compilerOptions": {
-    "target": "es5",
-    "allowJs": true,
+	"target": "es5",
+	"allowJs": true,
+	"lib": [
+		"dom",
+		"es2015",
+		"scripthost"
+	],
     "skipLibCheck": false,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
