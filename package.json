@@ -17,11 +17,13 @@
     "react-scripts": "2.1.1",
     "redux": "^4.0.1",
     "source-map-explorer": "^1.6.0",
-    "typescript": "3.1.6"
+    "typescript": "^3.2.1"
   },
   "homepage": "https://afaya.github.io/not-a-hub",
   "scripts": {
     "analyze": "source-map-explorer build/static/js/main.*",
+    "lint": "tslint --project tsconfig.json --config tslint.yaml",
+    "tslint-check": "tslint-config-prettier-check ./tslint.yaml",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -40,7 +42,8 @@
   ],
   "devDependencies": {
     "gh-pages": "^2.0.1",
-    "prettier": "1.15.2",
-    "tslint": "^5.11.0"
+    "prettier": "^1.15.2",
+    "tslint": "^5.11.0",
+    "tslint-config-prettier": "^1.16.0"
   }
 }

@@ -1,8 +1,6 @@
 import React from 'react'
 import { LoadingComponentProps } from 'react-loadable'
 
-const Loading: React.SFC<LoadingComponentProps> = () => (
-	<div>please wait</div>
-)
+const Loading: React.SFC<LoadingComponentProps> = () => <div>please wait</div>
 
-export default Loading 
+export default Loading
