@@ -7,7 +7,6 @@ interface PropSquare {
 }
 
 type Squares = Array<'X' | 'O' | null>
-
 function calculateWinner(squares: Squares): 'X' | 'O' | null {
   const lines = [
     [0, 1, 2],

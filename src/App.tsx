@@ -1,6 +1,7 @@
 import React, { Component, Suspense, LazyExoticComponent } from 'react'
 import { BrowserRouter as Router, Link, Route } from 'react-router-dom'
 import logo from './logo.svg'
+// import T from './posts/BuildinType.md'
 import './App.css'
 
 // import Tutor from './Tutor'
@@ -25,18 +26,13 @@ class App extends Component {
       <Router>
         <div className="App">
           <header className="App-header">
-            <img src={logo} className="App-logo" alt="logo" />
-            <p>
+            {/* <img src={logo} className="App-logo" alt="logo" /> */}
+            {/* <p>
               Edit <code>src/App.tsx</code> and save to reload.
-            </p>
-            {/* <a
-                            className="App-link"
-                            href="https://reactjs.org"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
-                            Learn React
-                        </a> */}
+            </p> */}
+						<Link to="/" className="App-link">
+							<img src={logo} className="App-logo" alt="logo"/>
+						</Link>
             <Link to="/" className="App-link">
               Home
             </Link>

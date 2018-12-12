@@ -19,7 +19,7 @@
     "source-map-explorer": "^1.6.0",
     "typescript": "^3.2.1"
   },
-  "homepage": "https://afaya.github.io/not-a-hub",
+  "homepage": "https://afaya.github.io/",
   "scripts": {
     "analyze": "source-map-explorer build/static/js/main.*",
     "lint": "tslint --project tsconfig.json --config tslint.yaml",
@@ -29,7 +29,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "yarn build",
-    "deploy": "gh-pages -d build"
+		"deploy": "gh-pages -d build",
+		"rsync": "rsync -avze 'ssh -p 27288' /Users/elfa/Documents/ts-react-20181123/build root@67.209.190.91:/root/blog"
   },
   "eslintConfig": {
     "extends": "react-app"
