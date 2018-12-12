@@ -13,6 +13,7 @@
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
     "react-loadable": "^5.5.0",
+    "react-markdown": "^4.0.4",
     "react-router-dom": "^4.3.1",
     "react-scripts": "2.1.1",
     "redux": "^4.0.1",
@@ -29,8 +30,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "yarn build",
-		"deploy": "gh-pages -d build",
-		"rsync": "rsync -avze 'ssh -p 27288' /Users/elfa/Documents/ts-react-20181123/build root@67.209.190.91:/root/blog"
+    "deploy": "gh-pages -d build",
+    "rsync": "rsync -avze 'ssh -p 27288' /Users/elfa/Documents/ts-react-20181123/build root@67.209.190.91:/root/blog"
   },
   "eslintConfig": {
     "extends": "react-app"
