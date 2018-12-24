@@ -2,7 +2,7 @@ import React from 'react'
 import ReactMarkdown from 'react-markdown'
 import 'highlight.js/styles/atom-one-light.css'
 import './Post.css'
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom'
 
 export interface PostProps {
   content: string
@@ -17,7 +17,7 @@ export interface PostProps {
 }
 
 export default class Post extends React.Component<PostProps> {
-	componentDidMount() {
+  componentDidMount() {
     this.refleshBlock()
   }
   componentDidUpdate() {
@@ -35,16 +35,24 @@ export default class Post extends React.Component<PostProps> {
       <>
         <h1>{this.props.title}</h1>
         <div className="mata">
-          <span><Link to="/" className="mata-link">{this.props.author}</Link></span>
+          <span>
+            <Link to="/" className="mata-link">
+              {this.props.author}
+            </Link>
+          </span>
           <span>|</span>
           <span>{this.props.date}</span>
           <span>|</span>
           {this.props.tags.map(tag => (
-            <span key={tag}><Link to="/" className="mata-link">#{tag}</Link></span>
+            <span key={tag}>
+              <Link to="/" className="mata-link">
+                #{tag}
+              </Link>
+            </span>
           ))}
         </div>
         <blockquote>{this.props.desc}</blockquote>
-        <ReactMarkdown source={this.props.content}/>
+        <ReactMarkdown source={this.props.content} />
       </>
     )
   }

@@ -4,7 +4,6 @@ ul {
 li {
   margin: 21px 0;
   padding: 0 55px;
-
 }
 .post {
   display: flex;
@@ -64,7 +63,7 @@ li {
 .tab {
   color: #1971c2;
 }
-.post-cover img{
+.post-cover img {
   object-fit: cover;
   height: 200px;
   width: 200px;

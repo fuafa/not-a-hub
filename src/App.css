@@ -1,49 +1,53 @@
 .App {
-	/* text-align: center; */
-	/* max-width: 960px;
+  /* text-align: center; */
+  /* max-width: 960px;
   margin: auto; */
-  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, "Nimbus Sans L", Arial, "Liberation Sans", "PingFang SC", "Hiragino Sans GB", "Source Han Sans CN", "Source Han Sans SC", "Microsoft YaHei", "Wenquanyi Micro Hei", "WenQuanYi Zen Hei", "ST Heiti", SimHei, "WenQuanYi Zen Hei Sharp", sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica,
+    'Nimbus Sans L', Arial, 'Liberation Sans', 'PingFang SC', 'Hiragino Sans GB',
+    'Source Han Sans CN', 'Source Han Sans SC', 'Microsoft YaHei',
+    'Wenquanyi Micro Hei', 'WenQuanYi Zen Hei', 'ST Heiti', SimHei,
+    'WenQuanYi Zen Hei Sharp', sans-serif;
 }
 
 .App-logo {
-	/* animation: App-logo-spin infinite 20s linear; */
-	height: 22px;
+  /* animation: App-logo-spin infinite 20s linear; */
+  height: 22px;
 }
 
 .App-header {
-	background-color: #425c95;
+  background-color: #425c95;
   color: white;
   margin-bottom: 55px;
 }
 
 .header-inner {
-	display: flex;
-	align-items: center;
-	/* justify-content: center; */
-	max-width: 960px;
-	margin: auto;
+  display: flex;
+  align-items: center;
+  /* justify-content: center; */
+  max-width: 960px;
+  margin: auto;
 }
 
 .App-link {
-	/* color: #61dafb; */
-	color: #FFF;
-	/* margin: 15px 0 15px 20px; */
-	margin: 15px 10px;
-	text-decoration: none;
+  /* color: #61dafb; */
+  color: #fff;
+  /* margin: 15px 0 15px 20px; */
+  margin: 15px 10px;
+  text-decoration: none;
 }
 .App-link:hover {
-	color: #eb5055;
+  color: #eb5055;
 }
 
 .App-link-wrapper {
-	/* flex: 1; */
-	margin: 0 10px;
-	text-align: left;
+  /* flex: 1; */
+  margin: 0 10px;
+  text-align: left;
 }
 
 .App-content {
-	max-width: 960px;
-	margin: 0 auto 140px;
+  max-width: 960px;
+  margin: 0 auto 140px;
 }
 
 footer {
@@ -52,17 +56,17 @@ footer {
 
 .footer-inner {
   max-width: 960px;
-  color: #FFF;
+  color: #fff;
   margin: 20px auto;
   border-top: #425c95 3px solid;
 }
 
 @keyframes App-logo-spin {
-	from {
-		transform: rotate(0deg);
-	}
+  from {
+    transform: rotate(0deg);
+  }
 
-	to {
-		transform: rotate(360deg);
-	}
+  to {
+    transform: rotate(360deg);
+  }
 }
