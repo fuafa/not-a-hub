@@ -1,0 +1,24 @@
+.mata span {
+  margin-right: 10px;
+  color: #777;
+}
+.mata-link {
+  /* color: #1971c2; */
+  text-decoration: none;
+}
+blockquote {
+  margin-left: 0;
+  padding-left: 34px;
+  border-left: 0.5em #eee solid;
+  color: #777;
+  line-height: 1.5;
+}
+h1 {
+  margin-bottom: 34px;
+}
+p {
+  line-height: 1.5;
+}
+pre {
+  line-height: 1.5;
+}
