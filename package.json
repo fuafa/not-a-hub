@@ -10,8 +10,12 @@
     "@types/react-loadable": "^5.4.2",
     "@types/react-router-dom": "^4.3.1",
     "@types/redux": "^3.6.0",
-    "react": "^16.6.3",
-    "react-dom": "^16.6.3",
+    "diff": "^3.5.0",
+    "gray-matter": "^4.0.1",
+    "highlight.js": "^9.13.1",
+    "js-yaml": "^3.12.0",
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0",
     "react-loadable": "^5.5.0",
     "react-markdown": "^4.0.4",
     "react-router-dom": "^4.3.1",
@@ -43,6 +47,7 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "@types/highlight.js": "^9.12.3",
     "gh-pages": "^2.0.1",
     "prettier": "^1.15.2",
     "react-snap": "^1.21.0",
