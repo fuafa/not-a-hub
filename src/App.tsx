@@ -6,6 +6,9 @@ import {
   Route
 } from 'react-router-dom'
 import logo from './logo.svg'
+import zhihu from './zhihu.svg'
+import github from './github.svg'
+import gmail from './gmail.svg'
 import './App.css'
 
 import LoadableFAQ from './LoadableFAQ'
@@ -49,12 +52,12 @@ class App extends Component {
                   <img src={logo} className="App-logo" alt="logo" />
                 </Link>
               </span>
-              <Link to="/" className="App-link">
+              {/* <Link to="/" className="App-link">
                 Resume
               </Link>
               <Link to="/" className="App-link">
                 About
-              </Link>
+              </Link> */}
             </div>
           </header>
           <main className="App-content">
@@ -73,10 +76,42 @@ class App extends Component {
             <Route path="/tutor" component={waitingComponent(LazyTutor)} />
             <Route path="/faq" component={LoadableFAQ} />
           </main>
-          {/* <footer>
+          <footer>
             <div className="footer-inner">
+              <a
+                href="https://www.zhihu.com/people/zixiang-li-57/activities"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img src={zhihu} alt="zhihu" className="App-social" />
+              </a>
+              <a
+                href="https://github.com/fuafa"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img src={github} alt="github" className="App-social" />
+              </a>
+              <a href="mailto:xiaofalzx@gmail.com">
+                <img src={gmail} alt="gmail" className="App-social" />
+              </a>
             </div>
-          </footer> */}
+            <div className="App-description">
+              <p>
+                Hi there, this is fuafa, I view myself as a front-end developer
+                but more than that. Currently seeking for a job as a software
+                developer in Shenzhen.
+              </p>
+              <p>
+                I am addictive to TypeScript in the latest months, expecially
+                the type system behind it.
+              </p>
+              <p>
+                Feel free to contact me if you are also interested in TypeScript
+                or me...
+              </p>
+            </div>
+          </footer>
         </div>
       </Router>
     )

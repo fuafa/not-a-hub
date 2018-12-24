@@ -16,7 +16,11 @@ export interface PostProps {
   cover?: string
 }
 
-export default class Post extends React.Component<PostProps> {
+type ExPostProps = {
+  onSetTag: (newTag: string) => void
+}
+
+export default class Post extends React.Component<PostProps & ExPostProps> {
   componentDidMount() {
     this.refleshBlock()
   }
@@ -45,7 +49,11 @@ export default class Post extends React.Component<PostProps> {
           <span>|</span>
           {this.props.tags.map(tag => (
             <span key={tag}>
-              <Link to="/" className="mata-link">
+              <Link
+                to={`/post#${tag}`}
+                className="mata-link"
+                onClick={() => this.props.onSetTag(tag)}
+              >
                 #{tag}
               </Link>
             </span>

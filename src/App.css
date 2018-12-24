@@ -7,11 +7,18 @@
     'Source Han Sans CN', 'Source Han Sans SC', 'Microsoft YaHei',
     'Wenquanyi Micro Hei', 'WenQuanYi Zen Hei', 'ST Heiti', SimHei,
     'WenQuanYi Zen Hei Sharp', sans-serif;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .App-logo {
   /* animation: App-logo-spin infinite 20s linear; */
   height: 22px;
+}
+.App-social {
+  height: 40px;
+  margin: 20px;
 }
 
 .App-header {
@@ -23,7 +30,7 @@
 .header-inner {
   display: flex;
   align-items: center;
-  /* justify-content: center; */
+  justify-content: center;
   max-width: 960px;
   margin: auto;
 }
@@ -41,24 +48,37 @@
 
 .App-link-wrapper {
   /* flex: 1; */
-  margin: 0 10px;
+  margin: 15px 10px;
   text-align: left;
 }
 
 .App-content {
+  flex: 1;
   max-width: 960px;
   margin: 0 auto 140px;
 }
 
 footer {
   background-color: #425c95;
+  margin-bottom: 0;
+  /* height: 200px; */
+  background-color: #fafbfc;
 }
 
 .footer-inner {
   max-width: 960px;
   color: #fff;
   margin: 20px auto;
-  border-top: #425c95 3px solid;
+  /* height: 100px; */
+  display: flex;
+  justify-content: center;
+  /* border-top: #425c95 3px solid; */
+}
+.App-description {
+  /* max-width:; */
+  max-width: 510px;
+  line-height: 1.5;
+  margin: 0 auto 100px;
 }
 
 @keyframes App-logo-spin {

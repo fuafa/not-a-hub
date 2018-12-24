@@ -3,8 +3,12 @@
   color: #777;
 }
 .mata-link {
-  /* color: #1971c2; */
+  color: #1971c2;
   text-decoration: none;
+}
+.mata-link:hover {
+  padding-bottom: 3px;
+  border-bottom: 1px solid #1971c2;
 }
 blockquote {
   margin-left: 0;
@@ -17,8 +21,18 @@ h1 {
   margin-bottom: 34px;
 }
 p {
-  line-height: 1.5;
+  line-height: 2;
 }
 pre {
   line-height: 1.5;
+}
+ol {
+  padding-left: 15px;
+}
+ol li {
+  padding-left: 10px;
+}
+p code {
+  background: #f7f7f7;
+  padding: 5px;
 }

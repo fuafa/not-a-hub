@@ -56,6 +56,7 @@ export default class PostLaout extends React.Component<
                 {...this.props.posts.find(
                   ({ url }) => url === props.match.params.post_title
                 )!}
+                onSetTag={this.setTag}
               />
             </Suspense>
           )}
