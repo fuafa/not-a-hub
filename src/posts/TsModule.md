@@ -1,3 +1,14 @@
+---
+title: Module System
+url: TsModule
+tags:
+  - suki
+  - test
+date: 2018.10.10
+author: fuafa
+type: hidden
+desc: xxxx
+---
 # Module
 
 1. 如果 import 进来的 module identifier 只用作 type anotation 而不是 expression, 最终生成的 js 文件不会真正的执行 require 函数 ( 对于 dynamic import 会怎么样？ )。例:
