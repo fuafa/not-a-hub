@@ -51,7 +51,7 @@
     "gh-pages": "^2.0.1",
     "prettier": "^1.15.2",
     "react-snap": "^1.21.0",
-    "tslint": "^5.11.0",
-    "tslint-config-prettier": "^1.16.0"
+    "tslint": "^5.12.0",
+    "tslint-config-prettier": "^1.17.0"
   }
 }
