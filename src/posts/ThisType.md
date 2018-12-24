@@ -2,12 +2,12 @@
 title: ThisType of TypeScript
 url: ThisType
 tags:
-  - suki
-  - test
-date: 2018.10.10
-author: fuafa
+  - TypeScript
+  - 复读机
+date: 2018.10.21
+author: 一号复读机
 type: todo
-desc: xxxx
+desc: Coming...
 ---
 
 https://github.com/Microsoft/TypeScript/pull/14141

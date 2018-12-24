@@ -3,7 +3,7 @@ title: Intersection of Primitive types
 url: IntersectionPrimitive
 tags:
   - TypeScript
-date: 2018.10.10
+date: 2018.12.04
 author: fuafa
 type: completed
 desc: Why at all TypeScript allows type T = number & string.

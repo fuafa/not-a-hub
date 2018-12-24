@@ -5,7 +5,7 @@ tags:
   - TypeScript
 date: 2018.10.10
 author: fuafa
-type: todo
+type: hidden
 desc: 在看 Vue 的 TypeScript 的声明文件和一些相关博客时, 了解到在一个 union Type 中, 如果变量同时满足多个类型, TypeScript 会根据类型的类型 (有点拗口) 的相对应优先级来决定 assign 给该变量哪个类型, 本文采取通过举例来了解一下该机制.
 ---
 ```ts

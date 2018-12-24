@@ -1,13 +1,12 @@
 ---
-title: Difference between Subtypes and Inheritance
+title: Difference between Subtyping and Inheritance
 url: SubtypeAndInheritance
 tags:
-  - suki
-  - test
-date: 2018.10.10
+  - Typing
+date: 2018.11.01
 author: fuafa
 type: todo
-desc: xxxx
+desc: 好像没什么好说的, 因为维基百科已经解析得很到位了, 暂且占个位置, 假装我已经学会了.
 ---
 
 Subtyping and inheritance are independent (orthogonal) relationships. They may coincide, but none is a special case of the other. In other words, between two types S and T, all combinations of subtyping and inheritance are possible:

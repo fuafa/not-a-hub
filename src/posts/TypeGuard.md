@@ -1,13 +1,12 @@
 ---
-title: Special Types in TypeScript
+title: any, never, unknown in TypeScript
 url: TypeGuard
 tags:
-  - suki
-  - test
+  - TypeScript
 date: 2018.10.10
 author: fuafa
-type: hidden
-desc: xxxx
+type: todo
+desc: um...
 ---
 
 1. TypeScript's `any` assigns to thing, but TypeScript's `{} | void` only assigns to `{} | void` (存疑)
