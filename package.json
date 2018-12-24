@@ -29,6 +29,7 @@
     "analyze": "source-map-explorer build/static/js/main.*",
     "lint": "tslint --project tsconfig.json --config tslint.yaml",
     "tslint-check": "tslint-config-prettier-check ./tslint.yaml",
+    "format": "prettier --config .prettierrc.yaml --write src/*.css src/*.tsx",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
