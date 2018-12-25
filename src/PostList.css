@@ -1,7 +1,7 @@
 ul {
   list-style-type: none;
 }
-li {
+ul li {
   margin: 21px 0;
   padding: 0 55px;
 }
@@ -16,7 +16,7 @@ li {
   flex-direction: column;
 }
 .post-title {
-  font-size: 34px;
+  font-size: 25px;
   margin-bottom: 21px;
   /* text-align: center; */
 }
@@ -36,10 +36,10 @@ li {
 }
 .post-desc {
   flex: 1;
-  font-size: 16px;
+  /* font-size: 14px; */
   margin: 0 13px 13px 0;
   color: #555;
-  line-height: 1.5;
+  line-height: 2;
   max-height: 120px;
   overflow: hidden;
   /* not work for ff and IE */

@@ -59,7 +59,9 @@ export default class Post extends React.Component<PostProps & ExPostProps> {
             </span>
           ))}
         </div>
-        <blockquote>{this.props.desc}</blockquote>
+        <blockquote>
+          <p>{this.props.desc}</p>
+        </blockquote>
         <ReactMarkdown source={this.props.content} />
       </>
     )
