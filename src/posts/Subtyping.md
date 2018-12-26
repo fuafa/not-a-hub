@@ -64,7 +64,7 @@ const obj = {
 bar(obj)
 const _ = obj.nested.z // break the type system
 ```
-If a type system sees `type A = typeof obj` is a subtype of `type B = Parameters<typeof bar>`, and mutation is permitted in a record field, then the type system is unsound. TypeScript is unsound that it permits `A <: B` and mutation.
+If a type system sees `type A = typeof obj` is a subtype of `type B = Parameters<typeof bar>`, and mutation is permitted in a record field, then the type system is unsound. TypeScript is unsound that it permits `A <: B` along with mutation.
 
 Note: if the record field is immuatable, then the `depth subtyping` is sound. So this is yet another example of how not mutation makes programming easy.
 
@@ -80,7 +80,7 @@ To determine if a function `foo` is a subtype of another function `bar`, there a
 In general, if `A <: B`, then `B => A <: A => B`. For TypeScript, this rule holds for function, but does not for class method.
 
 ## Bounded Polymorphism
-Since subtyping is also one kind polymorphism, for a language just either generic or subtyping, one may consider use these either one to substitute another. However it may be considered a bad decision.
+Since subtyping is also one kind polymorphism, for a language just has either generic or subtyping, one may consider use either alternatively. However it may be considered a bad decision.
 
 1. Use subtyping instead of generic would need extra type casting which is dangerous.
 2. Use generic instead of subtyping would be at a cost of significantly less code reuse.
@@ -91,5 +91,5 @@ So for a modern OOP language, it is commonly suppling both, that is `boundeed po
 type A<T extends R> = ...
 ```
 
-This feature give a type more restriction than just generic and more expressiveness and code reuse than subtyping.
+This feature give a type more restriction than just generic and more expressiveness and code reuse than just subtyping.
 

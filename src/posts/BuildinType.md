@@ -7,7 +7,7 @@ tags:
 date: 2018.09.10
 author: 初号复读机
 type: completed
-cover: ./hollow-knight-2.jpeg
+# cover: ./hollow-knight-2.jpeg
 desc: A walk through of Typescript built-in types. Since it is just a rebuild of what TypeScript had built for us, without much further research, so this post is considered meaningless and recap only.
 ---
 
