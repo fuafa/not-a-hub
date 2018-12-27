@@ -10,7 +10,7 @@ type: completed
 desc: The very first time I met type system is back to my college age when I studied my first programming language Java, but at that time I didn't really know what it actualy means. It is the SML programming language that made me recognize a type system is not just about trivially anotating a value, but also can be expressive and elegant with many interesting features, and the subtyping is one of them.
 ---
 
-Honestly, I didn't learn subtyping from SML since it doesn't have `subtyping`. SML instead uses another feature called `polymorphism` which is also known as `generic`. Some may treat `subtyping` as a kind of `polymorphism` as well, so `subtyping` is also called `polymorphism subtypes`.
+Honestly, I didn't learn `subtyping` from SML since it doesn't have one. SML instead uses another feature called `polymorphism` which is also known as `generic`. Some may treat `subtyping` as a kind of `polymorphism` as well, so `subtyping` is also called `polymorphism subtypes`.
 
 ## What is subtyping
 The [WIKI](https://www.wikiwand.com/en/Subtyping) has a very clear description of what it is, so I will not give a formal definition here. Instead, I'd like to give some demostrations in TypeScript and see how TypeScript handles `subtyping` relation and a little `polymorphism` as well.
@@ -32,7 +32,7 @@ will never be wrong. In addition, we can pass extra more informations say
 ```ts
 type R = {x: numebr, y: string, z: boolean}
 ```
-Since the extra property `z` will not be accessed in the function body, any number of extra properties are considered no harm, so we say type `R` is a more specialized the type `T`, and `R` is a subtype of `T`, notating as `R <: T`, any term expected a type `T` can be substituted by a type `R` with safe. TypeScript handles most of the situations like this, but not for situation like passing object literal directly, it will be treated specially and undergo `excess property checking` which would think extra properties are bugs (when mix with optional type, TypeScript pretend its typo as they describes in document). TypeScript suggests two work arounds for this:
+Since the extra property `z` will not be accessed in the function body, any number of extra properties are considered no harm, so we say type `R` is a more specialized the type `T`, and `R` is a subtype of `T`, notating as `R <: T`, any term expected a type `T` can be substituted by a type `R` with safe. TypeScript handles most of the situations like this, but not for situation like passing object literal directly, it will be treated specially and undergo `excess property checking` which would think extra properties are bugs (when mix with optional type, TypeScript pretends it's a typo as they describes in document). TypeScript suggests two work arounds for this:
 ```ts
 foo({x: 1, y: '', z: true}) // error due to excess property check
 // 1. Use string index signature to indicate there may be extra properties
@@ -48,7 +48,7 @@ foo(otherObj)
 ```
 
 ## Depth subtyping
-The `Width subtyping` says a type `A` with more properties considers to be a subtype of a type `B` with less properties but all included in type `A`, which doesn't hold when `B` has a field with a different type than in `A`. Consider situation like this:
+The `Width subtyping` says a type `A` with more properties is considered a subtype of a type `B` with less properties but all included in type `A`, which doesn't hold when `B` has a field with a different type than in `A`. Consider situation like this:
 ```ts
 function bar(o: { nested: { x: number, y: string }, r: boolean }) {
   o.nested = { x: 1, y: 'y' }
