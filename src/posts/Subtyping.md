@@ -1,5 +1,5 @@
 ---
-title: A very Basic understanding of subtyping
+title: A very basic understanding of subtyping
 url: Subtyping
 tags:
   - Typing
