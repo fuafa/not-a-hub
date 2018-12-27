@@ -7,10 +7,10 @@ tags:
 date: 2018.12.25
 author: fuafa
 type: completed
-desc: The very first time I met type system is back to my college age when I studied my first programming language Java, but at that time I didn't really know what it actualy means. That actualy makes me recognize the power of a type system is a course named 'Programming Language' in Coursera, and the elegant and expressive type system of SML really reflesh my shallow understanding, oh, a type system is not just trivially add a type anotation to a value at all, there are many other ways to express the types, and the subtyping is one of them.
+desc: The very first time I met type system is back to my college age when I studied my first programming language Java, but at that time I didn't really know what it actualy means. It is the SML programming language that made me recognize a type system is not just about trivially anotating a value, but also can be expressive and elegant with many interesting features, and the subtyping is one of them.
 ---
 
-Honestly, I didn't learn subtyping from SML since it doesn't have `subtyping`. SML instead uses another feature called `polymorphism` which is also known as `generic`. Some may treat `subtyping` another kind of `polymorphism`, so `subtyping` is also called `polymorphism subtypes`.
+Honestly, I didn't learn subtyping from SML since it doesn't have `subtyping`. SML instead uses another feature called `polymorphism` which is also known as `generic`. Some may treat `subtyping` as a kind of `polymorphism` as well, so `subtyping` is also called `polymorphism subtypes`.
 
 ## What is subtyping
 The [WIKI](https://www.wikiwand.com/en/Subtyping) has a very clear description of what it is, so I will not give a formal definition here. Instead, I'd like to give some demostrations in TypeScript and see how TypeScript handles `subtyping` relation and a little `polymorphism` as well.
