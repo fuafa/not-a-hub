@@ -1,2 +1,2 @@
-The blog is boosted by create-react-app, and serve as a SPA, which is not the usual way (a static site) a blog hosting.
+The blog is boosted by create-react-app, and serves as a SPA, which is not the usual way (a static site) a blog hosting.
 This project is lack of many features and most of the functions are not implemented in a recommended way, since I just use any libraries I intereted in at that time.
