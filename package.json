@@ -11,6 +11,7 @@
     "@types/react-router-dom": "^4.3.1",
     "@types/redux": "^3.6.0",
     "diff": "^3.5.0",
+    "fastify": "^2.0.1",
     "gray-matter": "^4.0.1",
     "highlight.js": "^9.13.1",
     "js-yaml": "^3.12.0",
@@ -36,6 +37,7 @@
     "eject": "react-scripts eject",
     "predeploy": "yarn build",
     "deploy": "gh-pages -d build",
+    "gen-json": "node task/post.js",
     "rsync": "rsync -avze 'ssh -p 27288' /Users/elfa/Documents/ts-react-20181123/build root@67.209.190.91:/root/blog"
   },
   "eslintConfig": {

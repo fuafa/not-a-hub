@@ -27,3 +27,6 @@ yarn-error.log*
 
 # generate files
 /src/out
+
+# miscellaneous
+/miscellaneous 

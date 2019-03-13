@@ -34,3 +34,5 @@ type DeepReadonlyObject<T> = {
 	[P in T]: DeepReadonly<T[P]>	
 }
 ```
+
+[![abc](./hollow-knight-2.jpeg)](www.fahub.info)
