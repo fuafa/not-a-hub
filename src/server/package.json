@@ -1,0 +1,22 @@
+{
+  "name": "blog-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "webpack.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "nodemon": "nodemon ./dist/index.js",
+    "tsc-watch": "tsc -w",
+    "watch": "concurrently \"tsc -w\" \"nodemon ./dist/index.js\""
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^4.1.0",
+    "nodemon": "^1.18.10"
+  },
+  "dependencies": {
+    "fastify": "^2.0.1",
+    "typescript": "^3.3.3333"
+  }
+}
