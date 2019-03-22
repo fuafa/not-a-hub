@@ -1,44 +1,29 @@
-import * as fastify from 'fastify';
-import {
-  Server,
-  IncomingMessage,
-  ServerResponse
-} from 'http';
-import hello from './routes/hello';
+import Koa, { Context, ParameterizedContext } from 'koa';
+import logger from 'koa-logger';
+import pino from 'koa-pino-logger';
+import session from 'koa-session';
 
-const server: fastify.FastifyInstance<Server, IncomingMessage, ServerResponse> = fastify({ logger: true });
+import router from './routes';
 
-const opts: fastify.RouteShorthandOptions = {
-  schema: {
-    response: {
-      200: {
-        type: 'object',
-        properties: {
-          pong: {
-            type: 'string'
-          }
-        }
-      }
-    }
-  }
-}
+const app = new Koa();
+// app.use(logger);
+app.use(pino());
+// // app.use(session({
 
-server.get('/api/ping', opts, async () => {
-  return { pong: 'pong' };
+// // }));
+
+app.use(async ({ request, response }, next) => {
+  request.ctx.log.info('')
+  // ctx.response.ctx.log.info('');
+  // ctx.log.info('haha');
+  await next();
 });
-
-server.register(hello);
-
-// server.listen(3001, (err, address) => {
-//   if (err) throw err;
+// app.use(async ctx => {
+//   ctx.body = 'Hello World';
 // });
+app.use(router.routes());
 
-const start = async () => {
-  try {
-    await server.listen(3001)
-  } catch (err) {
-    server.log.error(err)
-    process.exit(1)
-  }
-}
-start()
+
+app.listen(3001, () => {
+  // console.log(`server is listening on `);
+})

@@ -32,6 +32,7 @@
     "tslint-check": "tslint-config-prettier-check ./tslint.yaml",
     "format": "prettier --config .prettierrc.yaml --write src/*.css src/*.tsx",
     "start": "react-scripts start",
+    "server": "concurrently \"tsc -w -p src/server/tsconfig.json\" \"nodemon src/server/dist/index.js\"",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
@@ -51,7 +52,9 @@
   ],
   "devDependencies": {
     "@types/highlight.js": "^9.12.3",
+    "concurrently": "^4.1.0",
     "gh-pages": "^2.0.1",
+    "nodemon": "^1.18.10",
     "prettier": "^1.15.2",
     "react-snap": "^1.21.0",
     "tslint": "^5.12.0",
