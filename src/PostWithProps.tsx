@@ -1,38 +1,38 @@
-import React from 'react'
-import ReactMarkdown from 'react-markdown'
-import 'highlight.js/styles/atom-one-light.css'
-import './Post.css'
-import { Link } from 'react-router-dom'
+import React from 'react';
+import ReactMarkdown from 'react-markdown';
+import 'highlight.js/styles/atom-one-light.css';
+import './Post.css';
+import { Link } from 'react-router-dom';
 
 export interface PostProps {
-  content: string
-  title: string
-  url: string
-  tags: string[]
-  date: string
-  author: string
-  desc: string
-  type: string
-  cover?: string
+  content: string;
+  title: string;
+  url: string;
+  tags: string[];
+  date: string;
+  author: string;
+  desc: string;
+  type: string;
+  cover?: string;
 }
 
 type ExPostProps = {
-  onSetTag: (newTag: string) => void
-}
+  onSetTag: (newTag: string) => void;
+};
 
 export default class Post extends React.Component<PostProps & ExPostProps> {
   componentDidMount() {
-    this.refleshBlock()
+    this.refleshBlock();
   }
   componentDidUpdate() {
-    this.refleshBlock()
+    this.refleshBlock();
   }
   refleshBlock() {
     import('highlight.js').then(hljs => {
       document.querySelectorAll('pre code').forEach(block => {
-        hljs.highlightBlock(block)
-      })
-    })
+        hljs.highlightBlock(block);
+      });
+    });
   }
   render() {
     return (
@@ -64,6 +64,6 @@ export default class Post extends React.Component<PostProps & ExPostProps> {
         </blockquote>
         <ReactMarkdown source={this.props.content} />
       </>
-    )
+    );
   }
 }

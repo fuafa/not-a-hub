@@ -1,16 +1,16 @@
-import React from 'react'
-import { Link, RouteComponentProps } from 'react-router-dom'
-import { PostProps } from './PostWithProps'
-import './PostList.css'
+import React from 'react';
+import { Link, RouteComponentProps } from 'react-router-dom';
+import { PostProps } from './PostWithProps';
+import './PostList.css';
 
 export interface PostListProp {
-  posts: PostProps[]
-  onSetTag: (newTag: string) => void
-  tag: string
+  posts: PostProps[];
+  onSetTag: (newTag: string) => void;
+  tag: string;
 }
 type PostListState = {
-  listType: 'all' | 'hidden' | 'todo' | 'completed'
-}
+  listType: 'all' | 'hidden' | 'todo' | 'completed';
+};
 
 export default class PostList extends React.Component<
   RouteComponentProps & PostListProp,
@@ -18,23 +18,23 @@ export default class PostList extends React.Component<
 > {
   readonly state: PostListState = {
     listType: 'all'
-  }
+  };
 
   render() {
-    let posts
+    let posts;
 
     if (this.props.tag || this.props.tag.length !== 0) {
       posts = this.props.posts.filter(post =>
         post.tags.includes(this.props.tag)
-      )
+      );
     } else {
-      posts = [...this.props.posts]
+      posts = [...this.props.posts];
     }
 
     if (this.state.listType === 'all') {
-      posts = posts.filter(post => post.type !== 'hidden')
+      posts = posts.filter(post => post.type !== 'hidden');
     } else {
-      posts = posts.filter(post => post.type === this.state.listType)
+      posts = posts.filter(post => post.type === this.state.listType);
     }
 
     return (
@@ -80,6 +80,6 @@ export default class PostList extends React.Component<
           ))}
         </ul>
       </>
-    )
+    );
   }
 }

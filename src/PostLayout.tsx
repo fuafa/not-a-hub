@@ -1,17 +1,17 @@
-import React, { lazy, Suspense } from 'react'
-import { Route, RouteComponentProps } from 'react-router-dom'
-import PostList, { PostListProp } from './PostList'
+import React, { lazy, Suspense } from 'react';
+import { Route, RouteComponentProps } from 'react-router-dom';
+import PostList, { PostListProp } from './PostList';
 // import { PostProps } from "./PostWithProps";
 
 type PostLayoutState = {
-  tag: string
-}
+  tag: string;
+};
 type PostLayoutProps = Pick<
   PostListProp,
   Exclude<keyof PostListProp, 'tag' | 'onSetTag'>
->
+>;
 
-const Post = lazy(() => import('./PostWithProps'))
+const Post = lazy(() => import('./PostWithProps'));
 
 export default class PostLaout extends React.Component<
   RouteComponentProps & PostLayoutProps,
@@ -19,12 +19,12 @@ export default class PostLaout extends React.Component<
 > {
   readonly state: PostLayoutState = {
     tag: location.hash ? location.hash.slice(1) : ''
-  }
+  };
   setTag = (newTag: string) => {
     this.setState({
       tag: newTag
-    })
-  }
+    });
+  };
 
   render() {
     return (
@@ -62,6 +62,6 @@ export default class PostLaout extends React.Component<
           )}
         />
       </>
-    )
+    );
   }
 }

@@ -1,7 +1,7 @@
-import React from 'react'
-import ReactMarkdown from 'react-markdown'
-import hljs from 'highlight.js'
-import 'highlight.js/styles/atom-one-light.css'
+import React from 'react';
+import ReactMarkdown from 'react-markdown';
+import hljs from 'highlight.js';
+import 'highlight.js/styles/atom-one-light.css';
 
 export default class Post extends React.Component<{}> {
   componentDidMount() {
@@ -12,10 +12,10 @@ export default class Post extends React.Component<{}> {
     // })
 
     document.querySelectorAll('pre code').forEach(block => {
-      hljs.highlightBlock(block)
-    })
+      hljs.highlightBlock(block);
+    });
   }
   render() {
-    return <ReactMarkdown source={`%markdown inject%`} />
+    return <ReactMarkdown source={`%markdown inject%`} />;
   }
 }

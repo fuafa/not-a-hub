@@ -1,5 +1,5 @@
-import React from 'react'
-import lifeCycle from './react-lifecycle.png'
+import React from 'react';
+import lifeCycle from './react-lifecycle.png';
 
 const FAQ: React.SFC<{}> = props => {
   return (
@@ -21,7 +21,7 @@ const FAQ: React.SFC<{}> = props => {
         </li>
       </ol>
     </div>
-  )
-}
+  );
+};
 
-export default FAQ
+export default FAQ;

@@ -13,7 +13,7 @@ app.use(pino());
 // // }));
 
 app.use(async ({ request, response }, next) => {
-  request.ctx.log.info('')
+  request.ctx.log.info('');
   // ctx.response.ctx.log.info('');
   // ctx.log.info('haha');
   await next();
@@ -23,7 +23,6 @@ app.use(async ({ request, response }, next) => {
 // });
 app.use(router.routes());
 
-
 app.listen(3001, () => {
   // console.log(`server is listening on `);
-})
+});

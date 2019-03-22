@@ -1,29 +1,29 @@
-import React, { Component, LazyExoticComponent, Suspense } from 'react'
+import React, { Component, LazyExoticComponent, Suspense } from 'react';
 import {
   BrowserRouter as Router,
   Link,
   Redirect,
   Route
-} from 'react-router-dom'
-import logo from './logo.svg'
-import zhihu from './zhihu.svg'
-import github from './github.svg'
-import gmail from './gmail.svg'
-import './App.css'
+} from 'react-router-dom';
+import logo from './logo.svg';
+import zhihu from './zhihu.svg';
+import github from './github.svg';
+import gmail from './gmail.svg';
+import './App.css';
 
-import LoadableFAQ from './LoadableFAQ'
-import PostLayout from './PostLayout'
+import LoadableFAQ from './LoadableFAQ';
+import PostLayout from './PostLayout';
 // import PostList from './PostList'
-import Posts from './out/PostList.json'
+import Posts from './out/PostList.json';
 
 Posts.sort((a, b) => {
   if (a.date > b.date) {
-    return -1
+    return -1;
   } else {
-    return 0
+    return 0;
   }
-})
-const LazyTutor = React.lazy(() => import('./Tutor'))
+});
+const LazyTutor = React.lazy(() => import('./Tutor'));
 
 function waitingComponent(C: LazyExoticComponent<any>) {
   // const LazyTutor = React.lazy(() => import('./Tutor'))
@@ -31,7 +31,7 @@ function waitingComponent(C: LazyExoticComponent<any>) {
     <Suspense fallback={<div>Loading...</div>}>
       <C {...props} />
     </Suspense>
-  )
+  );
 }
 
 class App extends Component {
@@ -114,8 +114,8 @@ class App extends Component {
           </footer>
         </div>
       </Router>
-    )
+    );
   }
 }
 
-export default App
+export default App;

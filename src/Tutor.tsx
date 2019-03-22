@@ -1,12 +1,12 @@
-import React from 'react'
-import './Tutor.css'
+import React from 'react';
+import './Tutor.css';
 
 interface PropSquare {
-  value: 'X' | 'O' | null
-  onClick: () => void
+  value: 'X' | 'O' | null;
+  onClick: () => void;
 }
 
-type Squares = Array<'X' | 'O' | null>
+type Squares = Array<'X' | 'O' | null>;
 function calculateWinner(squares: Squares): 'X' | 'O' | null {
   const lines = [
     [0, 1, 2],
@@ -17,14 +17,14 @@ function calculateWinner(squares: Squares): 'X' | 'O' | null {
     [2, 5, 8],
     [0, 4, 8],
     [2, 4, 6]
-  ]
+  ];
   for (const line of lines) {
-    const [a, b, c] = line
+    const [a, b, c] = line;
     if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-      return squares[a]
+      return squares[a];
     }
   }
-  return null
+  return null;
 }
 /**
  * props.onClick from Game -> Board -> Square
@@ -34,12 +34,12 @@ const Square: React.SFC<PropSquare> = ({ onClick: handleClick, value }) => (
   <button className="square" onClick={() => handleClick()}>
     {value}
   </button>
-)
+);
 
 type PropsBoard = {
-  squares: Squares
-  onClick: (i: number) => void
-}
+  squares: Squares;
+  onClick: (i: number) => void;
+};
 
 class Board extends React.Component<PropsBoard> {
   renderSquare(i: number) {
@@ -48,7 +48,7 @@ class Board extends React.Component<PropsBoard> {
         value={this.props.squares[i]}
         onClick={() => this.props.onClick(i)}
       />
-    )
+    );
   }
   render() {
     return (
@@ -69,18 +69,18 @@ class Board extends React.Component<PropsBoard> {
           {this.renderSquare(8)}
         </div>
       </div>
-    )
+    );
   }
 }
 
 type HistoryItem = {
-  squares: Squares
-}
+  squares: Squares;
+};
 type StateGame = {
-  xIsNext: boolean
-  history: Array<HistoryItem>
-  stepNumber: number
-}
+  xIsNext: boolean;
+  history: Array<HistoryItem>;
+  stepNumber: number;
+};
 const initStates = {
   xIsNext: true,
   history: [
@@ -89,53 +89,53 @@ const initStates = {
     }
   ],
   stepNumber: 0
-}
+};
 
 export default class Game extends React.Component<{}, StateGame> {
-  readonly state: StateGame = initStates
+  readonly state: StateGame = initStates;
   handleClick(i: number) {
-    const history = this.state.history.slice(0, this.state.stepNumber + 1)
-    const current = history[history.length - 1]
-    const squares = [...current.squares]
+    const history = this.state.history.slice(0, this.state.stepNumber + 1);
+    const current = history[history.length - 1];
+    const squares = [...current.squares];
 
     if (calculateWinner(squares) || squares[i]) {
-      return
+      return;
     }
 
-    squares[i] = this.state.xIsNext ? 'X' : 'O'
+    squares[i] = this.state.xIsNext ? 'X' : 'O';
     this.setState({
       history: [...history, { squares }],
       stepNumber: history.length,
       xIsNext: !this.state.xIsNext
-    })
+    });
   }
   jumpTo(step: number) {
     // console.log(step)
     this.setState({
       stepNumber: step,
       xIsNext: step % 2 === 0
-    })
+    });
   }
   render() {
-    const history = [...this.state.history]
-    const current = history[this.state.stepNumber]
-    const winner = calculateWinner(current.squares)
+    const history = [...this.state.history];
+    const current = history[this.state.stepNumber];
+    const winner = calculateWinner(current.squares);
 
     const moves = history.map((step, move) => {
-      const desc = move ? `Go to move #${move}` : `Go to game start`
+      const desc = move ? `Go to move #${move}` : `Go to game start`;
 
       return (
         <li key={move}>
           <button onClick={() => this.jumpTo(move)}>{desc}</button>
         </li>
-      )
-    })
-    let status
+      );
+    });
+    let status;
 
     if (winner) {
-      status = `Winner is : ${winner}`
+      status = `Winner is : ${winner}`;
     } else {
-      status = `Next player is : ${this.state.xIsNext ? 'X' : 'O'}`
+      status = `Next player is : ${this.state.xIsNext ? 'X' : 'O'}`;
     }
 
     return (
@@ -149,6 +149,6 @@ export default class Game extends React.Component<{}, StateGame> {
           <ol>{moves}</ol>
         </div>
       </div>
-    )
+    );
   }
 }
