@@ -1,24 +1,29 @@
 .App {
-  /* text-align: center; */
-  /* max-width: 960px;
-  margin: auto; */
   font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica,
     'Nimbus Sans L', Arial, 'Liberation Sans', 'PingFang SC', 'Hiragino Sans GB',
     'Source Han Sans CN', 'Source Han Sans SC', 'Microsoft YaHei',
     'Wenquanyi Micro Hei', 'WenQuanYi Zen Hei', 'ST Heiti', SimHei,
     'WenQuanYi Zen Hei Sharp', sans-serif;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
+  min-height: 100%;
 }
 
 .App-logo {
   /* animation: App-logo-spin infinite 20s linear; */
-  height: 22px;
+  font-size: 30px;
+  color: #fff;
+  line-height: 2.2;
+}
+.App-logo:hover {
+  color: #eb2f96;
 }
 .App-social {
-  height: 40px;
+  color: rgb(85, 85, 85);
   margin: 20px;
+  font-size: 40px;
+}
+.App-social:hover {
+  color: #ffadd2;
+  transform: scale(1.5);
 }
 
 .App-header {
@@ -27,18 +32,8 @@
   margin-bottom: 55px;
 }
 
-.header-inner {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  max-width: 960px;
-  margin: auto;
-}
-
 .App-link {
-  /* color: #61dafb; */
   color: #fff;
-  /* margin: 15px 0 15px 20px; */
   margin: 15px 10px;
   text-decoration: none;
 }
@@ -47,35 +42,24 @@
 }
 
 .App-link-wrapper {
-  /* flex: 1; */
   margin: 15px 10px;
   text-align: left;
 }
 
 .App-content {
-  flex: 1;
   max-width: 960px;
   margin: 0 auto 140px;
-}
-
-footer {
-  background-color: #425c95;
-  margin-bottom: 0;
-  /* height: 200px; */
-  background-color: #fafbfc;
+  min-height: auto;
 }
 
 .footer-inner {
   max-width: 960px;
   color: #fff;
   margin: 20px auto;
-  /* height: 100px; */
   display: flex;
   justify-content: center;
-  /* border-top: #425c95 3px solid; */
 }
 .App-description {
-  /* max-width:; */
   max-width: 510px;
   line-height: 1.5;
   margin: 0 auto 100px;
@@ -85,7 +69,6 @@ footer {
   from {
     transform: rotate(0deg);
   }
-
   to {
     transform: rotate(360deg);
   }

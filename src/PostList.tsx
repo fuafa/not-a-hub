@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, RouteComponentProps } from 'react-router-dom';
+import { Tag, Typography, Divider } from 'antd';
 import { PostProps } from './PostWithProps';
 import './PostList.css';
 
@@ -11,6 +12,21 @@ export interface PostListProp {
 type PostListState = {
   listType: 'all' | 'hidden' | 'todo' | 'completed';
 };
+
+const colors = [
+  'magenta',
+  'red',
+  'volcano',
+  'orange',
+  'gold',
+  'lime',
+  'green',
+  'cyan',
+  'blue',
+  'geekblue',
+  'purple'
+];
+const { Title, Paragraph } = Typography;
 
 export default class PostList extends React.Component<
   RouteComponentProps & PostListProp,
@@ -38,36 +54,45 @@ export default class PostList extends React.Component<
     }
 
     return (
-      <>
+      <Typography>
         <h2 className="tag-title">
-          {this.props.tag && `#${this.props.tag} 话题`}
+          {this.props.tag && (
+            <Tag color={colors[Math.floor(Math.random() * colors.length)]}>
+              {this.props.tag} 话题
+            </Tag>
+          )}
         </h2>
         <ul>
           {posts.map(post => (
             <li key={post.url}>
               <div className="post">
                 <div className="post-text-wrapper">
-                  <div className="post-title">
+                  <Title className="post-title" level={3}>
                     <Link to={`/post/${post.url}`}>
                       {post.type === 'todo' ? `[坑] ${post.title}` : post.title}
                     </Link>
-                  </div>
-                  <div className="post-desc">{post.desc}</div>
+                  </Title>
+                  <Paragraph className="post-desc">{post.desc}</Paragraph>
                   <div className="post-info-wrapper">
                     <span className="post-info">
                       <Link to="/">{post.author} </Link>
                       edited on {post.date}
                     </span>
                     <span className="post-info">|</span>
-                    {post.tags.map(tab => (
-                      // <a href={`#${tab}`} key={tab} className="tab post-info">#{tab}</a>
+                    {post.tags.map(tag => (
                       <Link
-                        key={tab}
-                        to={`${this.props.match.url}#${tab}`}
-                        className="tab post-info"
-                        onClick={() => this.props.onSetTag(tab)}
+                        key={tag}
+                        to={`${this.props.match.url}#${tag}`}
+                        className="tag"
+                        onClick={() => this.props.onSetTag(tag)}
                       >
-                        #{tab}
+                        <Tag
+                          color={
+                            colors[Math.floor(Math.random() * colors.length)]
+                          }
+                        >
+                          {tag}
+                        </Tag>
                       </Link>
                     ))}
                   </div>
@@ -76,10 +101,11 @@ export default class PostList extends React.Component<
                   {post.cover && <img src={post.cover} alt="" />}
                 </div>
               </div>
+              <Divider />
             </li>
           ))}
         </ul>
-      </>
+      </Typography>
     );
   }
 }

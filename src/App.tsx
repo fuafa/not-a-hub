@@ -5,16 +5,15 @@ import {
   Redirect,
   Route
 } from 'react-router-dom';
-import logo from './logo.svg';
-import zhihu from './zhihu.svg';
-import github from './github.svg';
-import gmail from './gmail.svg';
+import { Icon, Layout } from 'antd';
+import Logo from './Logo';
 import './App.css';
 
 import LoadableFAQ from './LoadableFAQ';
 import PostLayout from './PostLayout';
 import Posts from './out/PostList.json';
-import { Button } from 'antd';
+
+const { Header, Footer, Content } = Layout;
 
 Posts.sort((a, b) => {
   if (a.date > b.date) {
@@ -38,36 +37,17 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <div className="App">
-          <header className="App-header">
-            <div className="header-inner">
-              {/* <Link to="/tutor" className="App-link">
-								Tutor
-							</Link>
-							<Link to="/faq" className="App-link">
-								AsyncFAQ
-							</Link> */}
-              <span className="App-link-wrapper">
-                <Link to="/">
-                  <img src={logo} className="App-logo" alt="logo" />
-                </Link>
-              </span>
-              {/* <Link to="/" className="App-link">
-                Resume
-              </Link>
-              <Link to="/" className="App-link">
-                About
-              </Link> */}
-            </div>
-          </header>
-          <main className="App-content">
+        <Layout className="App" style={{ backgroundColor: '#fff' }}>
+          <Header className="App-header" style={{ textAlign: 'center' }}>
+            <Link to="/">
+              <Icon component={Logo} className="App-logo" />
+            </Link>
+          </Header>
+          <Content className="App-content">
             <Route
               path="/"
               exact={true}
-              render={props => (
-                // <PostList {...props} posts={Posts}/>
-                <Redirect to="/post" />
-              )}
+              render={props => <Redirect to="/post" />}
             />
             <Route
               path="/post"
@@ -75,25 +55,25 @@ class App extends Component {
             />
             <Route path="/tutor" component={waitingComponent(LazyTutor)} />
             <Route path="/faq" component={LoadableFAQ} />
-          </main>
-          <footer>
+          </Content>
+          <Footer>
             <div className="footer-inner">
               <a
                 href="https://www.zhihu.com/people/zixiang-li-57/activities"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <img src={zhihu} alt="zhihu" className="App-social" />
+                <Icon type="zhihu" className="App-social" theme="outlined" />
               </a>
               <a
                 href="https://github.com/fuafa"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <img src={github} alt="github" className="App-social" />
+                <Icon type="github" className="App-social" theme="outlined" />
               </a>
               <a href="mailto:xiaofalzx@gmail.com">
-                <img src={gmail} alt="gmail" className="App-social" />
+                <Icon type="mail" className="App-social" theme="outlined" />
               </a>
             </div>
             <div className="App-description">
@@ -111,8 +91,8 @@ class App extends Component {
                 or me...
               </p>
             </div>
-          </footer>
-        </div>
+          </Footer>
+        </Layout>
       </Router>
     );
   }
