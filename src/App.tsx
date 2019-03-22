@@ -13,8 +13,8 @@ import './App.css';
 
 import LoadableFAQ from './LoadableFAQ';
 import PostLayout from './PostLayout';
-// import PostList from './PostList'
 import Posts from './out/PostList.json';
+import { Button } from 'antd';
 
 Posts.sort((a, b) => {
   if (a.date > b.date) {
