@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, RouteComponentProps } from 'react-router-dom';
-import { Tag, Typography, Divider } from 'antd';
+import { Tag, Typography, Divider, Pagination } from 'antd';
 import { PostProps } from './PostWithProps';
 import './PostList.css';
 
@@ -11,6 +11,8 @@ export interface PostListProp {
 }
 type PostListState = {
   listType: 'all' | 'hidden' | 'todo' | 'completed';
+  currentPage: number;
+  perPage: number
 };
 
 const colors = [
@@ -33,8 +35,20 @@ export default class PostList extends React.Component<
   PostListState
 > {
   readonly state: PostListState = {
-    listType: 'all'
+    listType: 'all',
+    currentPage: 1,
+    perPage: 5
   };
+
+  onPageChange = (page: number, pageSize?: number) => {
+    // console.log(page, pageSize);
+    this.setState(state => {
+      return {
+        ...state,
+        currentPage: page
+      };
+    });
+  }
 
   render() {
     let posts;
@@ -52,6 +66,12 @@ export default class PostList extends React.Component<
     } else {
       posts = posts.filter(post => post.type === this.state.listType);
     }
+
+    // page
+    const total = posts.length;
+    const start = (this.state.currentPage - 1) * this.state.perPage;
+    const end = start + this.state.perPage;
+    posts = posts.slice(start, end);
 
     return (
       <Typography>
@@ -105,6 +125,7 @@ export default class PostList extends React.Component<
             </li>
           ))}
         </ul>
+        <Pagination onChange={this.onPageChange} total={total} pageSize={this.state.perPage}></Pagination>
       </Typography>
     );
   }
