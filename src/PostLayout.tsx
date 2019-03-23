@@ -1,5 +1,6 @@
 import React, { lazy, Suspense } from 'react';
 import { Route, RouteComponentProps } from 'react-router-dom';
+import { Icon } from 'antd';
 import PostList, { PostListProp } from './PostList';
 // import { PostProps } from "./PostWithProps";
 
@@ -69,7 +70,7 @@ export default class PostLayout extends React.Component<
             <Suspense
               fallback={
                 <>
-                  <div>Loading...</div>
+                  <Icon type="loading" style={{fontSize: '50px'}}></Icon>
                 </>
               }
             >
