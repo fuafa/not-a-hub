@@ -8,11 +8,12 @@ export interface PostListProp {
   posts: PostProps[];
   onSetTag: (newTag: string) => void;
   tag: string;
+  onSetPage: (page: number) => void;
+  currentPage: number;
 }
 type PostListState = {
   listType: 'all' | 'hidden' | 'todo' | 'completed';
-  currentPage: number;
-  perPage: number
+  perPage: number;
 };
 
 const colors = [
@@ -36,19 +37,8 @@ export default class PostList extends React.Component<
 > {
   readonly state: PostListState = {
     listType: 'all',
-    currentPage: 1,
     perPage: 5
   };
-
-  onPageChange = (page: number, pageSize?: number) => {
-    // console.log(page, pageSize);
-    this.setState(state => {
-      return {
-        ...state,
-        currentPage: page
-      };
-    });
-  }
 
   render() {
     let posts;
@@ -68,8 +58,9 @@ export default class PostList extends React.Component<
     }
 
     // page
+    // 现在没什么 luan 用。。。
     const total = posts.length;
-    const start = (this.state.currentPage - 1) * this.state.perPage;
+    const start = (this.props.currentPage - 1) * this.state.perPage;
     const end = start + this.state.perPage;
     posts = posts.slice(start, end);
 
@@ -125,7 +116,12 @@ export default class PostList extends React.Component<
             </li>
           ))}
         </ul>
-        <Pagination onChange={this.onPageChange} total={total} pageSize={this.state.perPage}></Pagination>
+        <Pagination
+          onChange={this.props.onSetPage}
+          total={total}
+          pageSize={this.state.perPage}
+          current={this.props.currentPage}
+        />
       </Typography>
     );
   }

@@ -34,12 +34,30 @@ function waitingComponent(C: LazyExoticComponent<any>) {
 }
 
 class App extends Component {
+  private postLayoutRef = React.createRef<PostLayout>();
+  // 这里不能触发更新
+  onGoBackHomePage = () => {
+    const node = this.postLayoutRef.current;
+
+    if (node) {
+      node.setPage(1);
+    }
+  };
+  // 这里可以触发更新
+  // componentDidMount() {
+  //   const node = this.postLayoutRef.current;
+
+  //   if (node) {
+  //     node.setPage(1);
+  //   }
+  // }
   render() {
     return (
       <Router>
         <Layout className="App" style={{ backgroundColor: '#fff' }}>
           <Header className="App-header" style={{ textAlign: 'center' }}>
-            <Link to="/">
+            {/* 用 Redirect to /post 导致 ref 更新不起作用，（PostLayout.componentDidUpdate 不调用） */}
+            <Link to="/post" onClick={this.onGoBackHomePage}>
               <Icon component={Logo} className="App-logo" />
             </Link>
           </Header>
@@ -47,11 +65,16 @@ class App extends Component {
             <Route
               path="/"
               exact={true}
-              render={props => <Redirect to="/post" />}
+              render={() => <Redirect to="/post" />}
+              // render={props => <PostLayout ref={this.postLayoutRef} {...props} posts={Posts} />}
             />
             <Route
               path="/post"
-              render={props => <PostLayout {...props} posts={Posts} />}
+              // exact={true}
+              render={props => (
+                <PostLayout ref={this.postLayoutRef} {...props} posts={Posts} />
+              )}
+              // render={() => <Redirect to="/" />}
             />
             <Route path="/tutor" component={waitingComponent(LazyTutor)} />
             <Route path="/faq" component={LoadableFAQ} />
