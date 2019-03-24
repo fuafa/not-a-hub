@@ -35,28 +35,22 @@ function waitingComponent(C: LazyExoticComponent<any>) {
 
 class App extends Component {
   private postLayoutRef = React.createRef<PostLayout>();
-  // 这里不能触发更新
+  /**
+   * TODO: 这样做不好...
+   */
   onGoBackHomePage = () => {
     const node = this.postLayoutRef.current;
 
     if (node) {
-      node.setPage(1);
+      node.setTag('');
     }
   };
-  // 这里可以触发更新
-  // componentDidMount() {
-  //   const node = this.postLayoutRef.current;
-
-  //   if (node) {
-  //     node.setPage(1);
-  //   }
-  // }
   render() {
     return (
       <Router>
         <Layout className="App" style={{ backgroundColor: '#fff' }}>
           <Header className="App-header" style={{ textAlign: 'center' }}>
-            {/* 用 Redirect to /post 导致 ref 更新不起作用，（PostLayout.componentDidUpdate 不调用） */}
+            {/* 用 Redirect to /post 导致 ref 更新不起作用，（PostLayout.componentDidUpdate 不调用）, 因为在 path="/" 到 path="/post" 触发 componentWillUnmount, cao */}
             <Link to="/post" onClick={this.onGoBackHomePage}>
               <Icon component={Logo} className="App-logo" />
             </Link>
@@ -100,18 +94,8 @@ class App extends Component {
               </a>
             </div>
             <div className="App-description">
-              <p>
-                Hi there, this is fuafa, I view myself as a front-end developer
-                but more than that. Currently seeking for a job as a software
-                developer in Shenzhen.
-              </p>
-              <p>
-                I am addictive to TypeScript in the latest months, expecially
-                the type system behind it.
-              </p>
-              <p>
-                Feel free to contact me if you are also interested in TypeScript
-                or me...
+              <p style={{ textAlign: 'center' }}>
+                Made with <Icon type="heart" theme="filled" /> by Heuafa @2019
               </p>
             </div>
           </Footer>
