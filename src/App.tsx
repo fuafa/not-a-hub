@@ -36,14 +36,13 @@ function waitingComponent(C: LazyExoticComponent<any>) {
 class App extends Component {
   private postLayoutRef = React.createRef<PostLayout>();
   /**
+   * 很久没看，大概是想要返回主页时清除 tag，我艹，不好是什么意思...
    * TODO: 这样做不好...
    */
   onGoBackHomePage = () => {
     const node = this.postLayoutRef.current;
 
-    if (node) {
-      node.setTag('');
-    }
+    node && node.setTag('');
   };
   render() {
     return (
