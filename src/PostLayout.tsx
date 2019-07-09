@@ -2,7 +2,6 @@ import React, { lazy, Suspense } from 'react';
 import { Route, RouteComponentProps } from 'react-router-dom';
 import { Icon } from 'antd';
 import PostList, { PostListProp } from './PostList';
-// import { PostProps } from "./PostWithProps";
 
 type PostLayoutState = {
   tag: string;
@@ -13,7 +12,7 @@ type PostLayoutProps = Pick<
   Exclude<keyof PostListProp, 'tag' | 'onSetTag' | 'currentPage' | 'onSetPage'>
 >;
 
-const Post = lazy(() => import('./PostWithProps'));
+const Post = lazy(() => import('./Post'));
 
 export default class PostLayout extends React.Component<
   RouteComponentProps & PostLayoutProps,

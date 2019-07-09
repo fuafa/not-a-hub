@@ -7,11 +7,8 @@ const LoadableComponent = Loadable({
   loading: Loading
 });
 
-// const LoadableFAQ = (<LoadableComponent />)
-class LoadableFAQ extends React.Component<{}> {
-  render() {
-    return <LoadableComponent />;
-  }
+const LoadableFAQ: React.SFC = () => {
+  return <LoadableComponent />;
 }
 
 export default LoadableFAQ;

@@ -60,15 +60,12 @@ class App extends Component {
               path="/"
               exact={true}
               render={() => <Redirect to="/post" />}
-              // render={props => <PostLayout ref={this.postLayoutRef} {...props} posts={Posts} />}
             />
             <Route
               path="/post"
-              // exact={true}
               render={props => (
                 <PostLayout ref={this.postLayoutRef} {...props} posts={Posts} />
               )}
-              // render={() => <Redirect to="/" />}
             />
             <Route path="/tutor" component={waitingComponent(LazyTutor)} />
             <Route path="/faq" component={LoadableFAQ} />

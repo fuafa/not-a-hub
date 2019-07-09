@@ -1,5 +1,8 @@
 import React from 'react';
 
+/**
+ * 这个好像是猫？
+ */
 const Logo = () => (
   <svg
     aria-hidden="true"

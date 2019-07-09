@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, RouteComponentProps } from 'react-router-dom';
 import { Tag, Typography, Divider, Pagination } from 'antd';
-import { PostProps } from './PostWithProps';
+import { PostProps } from './Post';
 import './PostList.css';
 
 export interface PostListProp {

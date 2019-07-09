@@ -8,7 +8,7 @@ const FAQ: React.SFC<{}> = props => {
         <li>
           <div>React 生命周期：</div>
           <div>
-            <img src={lifeCycle} alt="" />
+            <img src={lifeCycle} alt="Life cycle of react" />
           </div>
         </li>
         <li>
