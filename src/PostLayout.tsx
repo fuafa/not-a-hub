@@ -101,7 +101,7 @@ export default class PostLayout extends React.Component<
     return (
       <>
         <Route
-          path={this.props.match.url}
+          path={this.props.match.path}
           exact
           render={props => (
             <PostList
@@ -115,7 +115,7 @@ export default class PostLayout extends React.Component<
           )}
         />
         <Route
-          path="/post/:post_title"
+          path={`${this.props.match.path}/:post_title`}
           render={props => (
             <Suspense
               fallback={

@@ -45,7 +45,7 @@ class App extends Component {
         <Layout className="App" style={{ backgroundColor: '#fff' }}>
           <Header className="App-header" style={{ textAlign: 'center' }}>
             {/* 用 Redirect to /post 导致 ref 更新不起作用，（PostLayout.componentDidUpdate 不调用）, 因为在 path="/" 到 path="/post" 触发 componentWillUnmount, cao */}
-            <Link to="/post" onClick={this.onGoBackHomePage}>
+            <Link to="/posts" onClick={this.onGoBackHomePage}>
               <Icon component={Logo} className="App-logo" />
             </Link>
           </Header>
@@ -53,10 +53,10 @@ class App extends Component {
             <Route
               path="/"
               exact={true}
-              render={() => <Redirect to="/post" />}
+              render={() => <Redirect to="/posts" />}
             />
             <Route
-              path="/post"
+              path="/posts"
               render={props => (
                 <PostLayout ref={this.postLayoutRef} {...props} posts={Posts} />
               )}

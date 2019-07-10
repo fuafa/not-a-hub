@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, RouteComponentProps } from 'react-router-dom';
 import { Tag, Typography, Divider, Pagination } from 'antd';
 import { PostProps } from './Post';
@@ -70,7 +70,7 @@ const PostList: React.SFC<RouteComponentProps & PostListProp> = props => {
             <div className="post">
               <div className="post-text-wrapper">
                 <Title className="post-title" level={3}>
-                  <Link to={`/post/${post.url}`}>
+                  <Link to={`/posts/${post.url}`}>
                     {post.type === 'todo' ? `[坑] ${post.title}` : post.title}
                   </Link>
                 </Title>

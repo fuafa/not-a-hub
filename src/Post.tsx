@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import ReactMarkdown from 'react-markdown';
 import 'highlight.js/styles/atom-one-light.css';
 import './Post.css';
-import { Link } from 'react-router-dom';
+import { Link, RouteComponentProps } from 'react-router-dom';
 
 export interface PostProps {
   content: string;
@@ -21,7 +21,7 @@ type ExPostProps = {
 };
 
 
-const Post: React.SFC<PostProps & ExPostProps> = props => {
+const Post: React.SFC<PostProps & ExPostProps & RouteComponentProps> = props => {
   useEffect(() => {
     import('highlight.js').then(hljs => {
       document.querySelectorAll('pre code').forEach(block => {
@@ -45,7 +45,7 @@ const Post: React.SFC<PostProps & ExPostProps> = props => {
         {props.tags.map(tag => (
           <span key={tag}>
             <Link
-              to={`/post#${tag}`}
+              to={`/posts#${tag}`}
               className="mata-link"
               onClick={() => props.onSetTag(tag)}
             >
