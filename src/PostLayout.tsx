@@ -19,6 +19,7 @@ export default class PostLayout extends React.Component<
   PostLayoutState
 > {
   readonly state: PostLayoutState = {
+    // eslint-disable-next-line
     tag: location.hash ? decodeURIComponent(location.hash).slice(1) : '',
     currentPage: Number(sessionStorage.getItem('currentPage')) || 1
   };
