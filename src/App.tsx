@@ -1,4 +1,4 @@
-import React, { Component, LazyExoticComponent, Suspense } from 'react';
+import React, { Component } from 'react';
 import {
   BrowserRouter as Router,
   Link,
@@ -6,11 +6,14 @@ import {
   Route
 } from 'react-router-dom';
 import { Icon, Layout } from 'antd';
+
 import Logo from './Logo';
 import './App.css';
 
 import LoadableFAQ from './LoadableFAQ';
 import PostLayout from './PostLayout';
+// import Post from './Post';
+import { WaitingComponent } from './utils/utils';
 import Posts from './out/PostList.json';
 
 const { Header, Footer, Content } = Layout;
@@ -22,16 +25,8 @@ Posts.sort((a, b) => {
     return 0;
   }
 });
-const LazyTutor = React.lazy(() => import('./Tutor'));
 
-function waitingComponent(C: LazyExoticComponent<any>) {
-  // const LazyTutor = React.lazy(() => import('./Tutor'))
-  return (props: any) => (
-    <Suspense fallback={<div>Loading...</div>}>
-      <C {...props} />
-    </Suspense>
-  );
-}
+const LazyTutor = React.lazy(() => import('./Tutor'));
 
 class App extends Component {
   private postLayoutRef = React.createRef<PostLayout>();
@@ -66,7 +61,25 @@ class App extends Component {
                 <PostLayout ref={this.postLayoutRef} {...props} posts={Posts} />
               )}
             />
-            <Route path="/tutor" component={waitingComponent(LazyTutor)} />
+            {/* <Route
+              path="post/:post_title"
+              render={props => (
+                <Suspense
+                  fallback={
+                    <Icon type="loading" style={{fontSize: '50px'}}></Icon>
+                  }
+                >
+                <Post
+                  {...props}
+                  {...Posts.find(
+                    ({ url }) => url === props.match.params.post_title
+                  )!}
+                  onSetTag={newTag => console.log(newTag)}
+                />
+                </Suspense>
+              )}
+            /> */}
+            <Route path="/tutor" component={WaitingComponent(LazyTutor)} />
             <Route path="/faq" component={LoadableFAQ} />
           </Content>
           <Footer>

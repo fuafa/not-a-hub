@@ -1,12 +1,8 @@
-import React, { lazy, Suspense } from 'react';
+import React, { lazy, Suspense, useState, useEffect } from 'react'; // eslint-disable-line
 import { Route, RouteComponentProps } from 'react-router-dom';
 import { Icon } from 'antd';
 import PostList, { PostListProp } from './PostList';
 
-type PostLayoutState = {
-  tag: string;
-  currentPage: number;
-};
 type PostLayoutProps = Pick<
   PostListProp,
   Exclude<keyof PostListProp, 'tag' | 'onSetTag' | 'currentPage' | 'onSetPage'>
@@ -14,6 +10,60 @@ type PostLayoutProps = Pick<
 
 const Post = lazy(() => import('./Post'));
 
+// const PostLayout: React.SFC<RouteComponentProps & PostLayoutProps> = props => {
+//   const [tag, setTag] = useState(location.hash ? decodeURIComponent(location.hash).slice(1) : ''); // eslint-disable-line no-restricted-globals
+//   const [currentPage, setCurrentPage] = useState(Number(sessionStorage.getItem('currentPage')) || 1);
+
+//   useEffect(() => {
+//     sessionStorage.setItem('currentPage', String(currentPage));
+//   });
+
+//   return (
+//     <>
+//       <Route
+//         path={props.match.url}
+//         exact
+//         render={routeProps => (
+//           <PostList
+//             {...routeProps}
+//             posts={props.posts}
+//             onSetTag={setTag}
+//             tag={tag}
+//             currentPage={currentPage}
+//             onSetPage={setCurrentPage}
+//           />
+//         )}
+//       />
+//       <Route
+//         path="/post/:post_title"
+//         render={routeProps => (
+//           <Suspense
+//             fallback={
+//               <>
+//                 <Icon type="loading" style={{fontSize: '50px'}}></Icon>
+//               </>
+//             }
+//           >
+//             <Post
+//               {...routeProps}
+//               {...props.posts.find(
+//                 ({ url }) => url === (props.match.params as any).post_title
+//               )!}
+//               onSetTag={setTag}
+//             />
+//           </Suspense>
+//         )}
+//       />
+//     </>
+//   );
+// }
+
+// export default PostLayout;
+
+type PostLayoutState = {
+  tag: string,
+  currentPage: number
+};
 export default class PostLayout extends React.Component<
   RouteComponentProps & PostLayoutProps,
   PostLayoutState
