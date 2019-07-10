@@ -16,12 +16,8 @@ export interface PostProps {
   cover?: string;
 }
 
-type ExPostProps = {
-  onSetTag: (newTag: string) => void;
-};
 
-
-const Post: React.SFC<PostProps & ExPostProps & RouteComponentProps> = props => {
+const Post: React.SFC<PostProps & RouteComponentProps> = props => {
   useEffect(() => {
     import('highlight.js').then(hljs => {
       document.querySelectorAll('pre code').forEach(block => {
@@ -45,9 +41,8 @@ const Post: React.SFC<PostProps & ExPostProps & RouteComponentProps> = props => 
         {props.tags.map(tag => (
           <span key={tag}>
             <Link
-              to={`/#${tag}`}
+              to={`/tag/${tag}`}
               className="mata-link"
-              onClick={() => props.onSetTag(tag)}
             >
               #{tag}
             </Link>

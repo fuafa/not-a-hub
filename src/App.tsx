@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import {
   BrowserRouter as Router,
   Link,
-  Redirect,
   Route
 } from 'react-router-dom';
 import { Icon, Layout } from 'antd';
@@ -29,23 +28,13 @@ Posts.sort((a, b) => {
 const LazyTutor = React.lazy(() => import('./Tutor'));
 
 class App extends Component {
-  private postLayoutRef = React.createRef<PostLayout>();
-  /**
-   * 很久没看，大概是想要返回主页时清除 tag，我艹，不好是什么意思...
-   * TODO: 这样做不好...
-   */
-  onGoBackHomePage = () => {
-    const node = this.postLayoutRef.current;
-
-    node && node.setTag('');
-  };
   render() {
     return (
       <Router>
         <Layout className="App" style={{ backgroundColor: '#fff' }}>
           <Header className="App-header" style={{ textAlign: 'center' }}>
-            {/* 用 Redirect to /post 导致 ref 更新不起作用，（PostLayout.componentDidUpdate 不调用）, 因为在 path="/" 到 path="/post" 触发 componentWillUnmount, cao */}
-            <Link to="/" onClick={this.onGoBackHomePage}>
+            {/* 怎么重置 currentPage 啊 */}
+            <Link to="/">
               <Icon component={Logo} className="App-logo" />
             </Link>
           </Header>
@@ -58,7 +47,7 @@ class App extends Component {
             <Route
               path="/"
               render={props => (
-                <PostLayout ref={this.postLayoutRef} {...props} posts={Posts} />
+                <PostLayout {...props} posts={Posts} />
               )}
             />
             <Route path="/tutor" component={WaitingComponent(LazyTutor)} />

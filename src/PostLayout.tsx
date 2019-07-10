@@ -5,7 +5,7 @@ import PostList, { PostListProp } from './PostList';
 
 type PostLayoutProps = Pick<
   PostListProp,
-  Exclude<keyof PostListProp, 'tag' | 'onSetTag' | 'currentPage' | 'onSetPage'>
+  Exclude<keyof PostListProp, 'currentPage' | 'onSetPage'>
 >;
 
 const Post = lazy(() => import('./Post'));
@@ -69,7 +69,6 @@ const Post = lazy(() => import('./Post'));
 // export default PostLayout;
 
 type PostLayoutState = {
-  tag: string,
   currentPage: number
 };
 export default class PostLayout extends React.Component<
@@ -77,18 +76,7 @@ export default class PostLayout extends React.Component<
   PostLayoutState
 > {
   readonly state: PostLayoutState = {
-    // eslint-disable-next-line
-    tag: location.hash ? decodeURIComponent(location.hash).slice(1) : '',
     currentPage: Number(sessionStorage.getItem('currentPage')) || 1
-  };
-  setTag = (newTag: string) => {
-    this.setState(state => {
-      return {
-        ...state,
-        tag: newTag,
-        currentPage: 1
-      };
-    });
   };
 
   setPage = (page: number) => {
@@ -101,7 +89,6 @@ export default class PostLayout extends React.Component<
   };
 
   componentDidUpdate() {
-    console.log('wtf');
     sessionStorage.setItem('currentPage', `${this.state.currentPage}`);
   }
 
@@ -109,14 +96,12 @@ export default class PostLayout extends React.Component<
     return (
       <>
         <Route
-          path={this.props.match.path}
+          path={[this.props.match.path, `${this.props.match.path}tag/:tag`]}
           exact
           render={props => (
             <PostList
               {...props}
               posts={this.props.posts}
-              onSetTag={this.setTag}
-              tag={this.state.tag}
               currentPage={this.state.currentPage}
               onSetPage={this.setPage}
             />
@@ -137,7 +122,6 @@ export default class PostLayout extends React.Component<
                 {...this.props.posts.find(
                   ({ url }) => url === props.match.params.post_title
                 )!}
-                onSetTag={this.setTag}
               />
             </Suspense>
           )}

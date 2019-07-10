@@ -6,12 +6,13 @@ import './PostList.css';
 
 export interface PostListProp {
   posts: PostProps[];
-  onSetTag: (newTag: string) => void;
-  tag: string;
   onSetPage: (page: number) => void;
   currentPage: number;
 }
 type ListType = 'all' | 'hidden' | 'todo' | 'completed';
+type PostsRouterParam = {
+  tag?: string
+};
 
 const COLORS = [
   'magenta',
@@ -30,13 +31,24 @@ const { Title, Paragraph } = Typography;
 
 const PER_PAGE = 5;
 
-const PostList: React.SFC<RouteComponentProps & PostListProp> = props => {
+const PostList: React.SFC<RouteComponentProps<PostsRouterParam> & PostListProp> = props => {
   let posts;
   const [listType] = useState<ListType>('all');
 
-  if (props.tag || props.tag.length !== 0) {
+  const tag = props.match.params.tag;
+  useEffect(() => {
+    props.onSetPage(1);
+    // React Hook useEffect has a missing dependency: 'props'.
+    // Either include it or remove the dependency array.
+    // However, 'props' will change when *any* prop changes,
+    // so the preferred fix is to destructure the 'props' object outside of the useEffect call and refer to those specific props inside useEffect  react-hooks/exhaustive-deps
+    // https://reactjs.org/docs/hooks-faq.html#is-it-safe-to-omit-functions-from-the-list-of-dependencies
+    // eslint-disable-next-line
+  }, [tag])
+
+  if (tag) {
     posts = props.posts.filter(post =>
-      post.tags.includes(props.tag)
+      post.tags.includes(tag)
     );
   } else {
     posts = [...props.posts];
@@ -58,9 +70,9 @@ const PostList: React.SFC<RouteComponentProps & PostListProp> = props => {
   return (
     <Typography>
       <h2 className="tag-title">
-        {props.tag && (
+        {tag && (
           <Tag color={COLORS[Math.floor(Math.random() * COLORS.length)]}>
-            {props.tag} 话题
+            {tag} 话题
           </Tag>
         )}
       </h2>
@@ -84,9 +96,9 @@ const PostList: React.SFC<RouteComponentProps & PostListProp> = props => {
                   {post.tags.map(tag => (
                     <Link
                       key={tag}
-                      to={`/#${tag}`}
+                      to={`/tag/${tag}`}
                       className="tag"
-                      onClick={() => props.onSetTag(tag)}
+                      onClick={() => props.onSetPage(1)}
                     >
                       <Tag
                         color={
