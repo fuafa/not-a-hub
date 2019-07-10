@@ -32,3 +32,6 @@ yarn-error.log*
 
 # miscellaneous
 /miscellaneous 
+
+# sh
+*.sh
