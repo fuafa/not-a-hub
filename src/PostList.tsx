@@ -6,9 +6,7 @@ import './PostList.css';
 
 export interface PostListProp {
   posts: PostProps[];
-  onSetPage: (page: number) => void;
-  currentPage: number;
-}
+};
 type ListType = 'all' | 'hidden' | 'todo' | 'completed';
 type PostsRouterParam = {
   tag?: string
@@ -27,24 +25,27 @@ const COLORS = [
   'geekblue',
   'purple'
 ] as const;
-const { Title, Paragraph } = Typography;
-
 const PER_PAGE = 5;
+const { Title, Paragraph } = Typography;
 
 const PostList: React.SFC<RouteComponentProps<PostsRouterParam> & PostListProp> = props => {
   let posts;
   const [listType] = useState<ListType>('all');
-
+  const [currentPage, setPage] = useState(Number(sessionStorage.getItem('currentPage')) || 1);
   const tag = props.match.params.tag;
+
   useEffect(() => {
-    props.onSetPage(1);
+    setPage(1);
     // React Hook useEffect has a missing dependency: 'props'.
     // Either include it or remove the dependency array.
     // However, 'props' will change when *any* prop changes,
     // so the preferred fix is to destructure the 'props' object outside of the useEffect call and refer to those specific props inside useEffect  react-hooks/exhaustive-deps
     // https://reactjs.org/docs/hooks-faq.html#is-it-safe-to-omit-functions-from-the-list-of-dependencies
-    // eslint-disable-next-line
-  }, [tag])
+  }, [tag]);
+
+  useEffect(() => {
+    sessionStorage.setItem('currentPage', `${currentPage}`);
+  });
 
   if (tag) {
     posts = props.posts.filter(post =>
@@ -63,7 +64,7 @@ const PostList: React.SFC<RouteComponentProps<PostsRouterParam> & PostListProp> 
   // page
   // 现在没什么 luan 用。。。
   const total = posts.length;
-  const start = (props.currentPage - 1) * PER_PAGE;
+  const start = (currentPage - 1) * PER_PAGE;
   const end = start + PER_PAGE;
   posts = posts.slice(start, end);
 
@@ -98,7 +99,7 @@ const PostList: React.SFC<RouteComponentProps<PostsRouterParam> & PostListProp> 
                       key={tag}
                       to={`/tag/${tag}`}
                       className="tag"
-                      onClick={() => props.onSetPage(1)}
+                      onClick={() => setPage(1)}
                     >
                       <Tag
                         color={
@@ -120,10 +121,13 @@ const PostList: React.SFC<RouteComponentProps<PostsRouterParam> & PostListProp> 
         ))}
       </ul>
       <Pagination
-        onChange={props.onSetPage}
+        // Warning: State updates from the useState() and useReducer() Hooks don't support the second callback argument.
+        // To execute a side effect after rendering, declare it in the component body with useEffect().
+        // 什么意思呢？
+        onChange={setPage}
         total={total}
         pageSize={PER_PAGE}
-        current={props.currentPage}
+        current={currentPage}
       />
     </Typography>
   );
