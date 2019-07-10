@@ -45,40 +45,22 @@ class App extends Component {
         <Layout className="App" style={{ backgroundColor: '#fff' }}>
           <Header className="App-header" style={{ textAlign: 'center' }}>
             {/* 用 Redirect to /post 导致 ref 更新不起作用，（PostLayout.componentDidUpdate 不调用）, 因为在 path="/" 到 path="/post" 触发 componentWillUnmount, cao */}
-            <Link to="/posts" onClick={this.onGoBackHomePage}>
+            <Link to="/" onClick={this.onGoBackHomePage}>
               <Icon component={Logo} className="App-logo" />
             </Link>
           </Header>
           <Content className="App-content">
-            <Route
+            {/* <Route
               path="/"
               exact={true}
               render={() => <Redirect to="/posts" />}
-            />
+            /> */}
             <Route
-              path="/posts"
+              path="/"
               render={props => (
                 <PostLayout ref={this.postLayoutRef} {...props} posts={Posts} />
               )}
             />
-            {/* <Route
-              path="post/:post_title"
-              render={props => (
-                <Suspense
-                  fallback={
-                    <Icon type="loading" style={{fontSize: '50px'}}></Icon>
-                  }
-                >
-                <Post
-                  {...props}
-                  {...Posts.find(
-                    ({ url }) => url === props.match.params.post_title
-                  )!}
-                  onSetTag={newTag => console.log(newTag)}
-                />
-                </Suspense>
-              )}
-            /> */}
             <Route path="/tutor" component={WaitingComponent(LazyTutor)} />
             <Route path="/faq" component={LoadableFAQ} />
           </Content>

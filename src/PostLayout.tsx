@@ -1,4 +1,4 @@
-import React, { lazy, Suspense, useState, useEffect } from 'react'; // eslint-disable-line
+import React, { lazy, Suspense, forwardRef, ForwardRefExoticComponent, useState, useEffect, useImperativeHandle } from 'react'; // eslint-disable-line
 import { Route, RouteComponentProps } from 'react-router-dom';
 import { Icon } from 'antd';
 import PostList, { PostListProp } from './PostList';
@@ -10,13 +10,20 @@ type PostLayoutProps = Pick<
 
 const Post = lazy(() => import('./Post'));
 
-// const PostLayout: React.SFC<RouteComponentProps & PostLayoutProps> = props => {
+// const PostLayout = forwardRef((props: RouteComponentProps & PostLayoutProps, ref) => {
 //   const [tag, setTag] = useState(location.hash ? decodeURIComponent(location.hash).slice(1) : ''); // eslint-disable-line no-restricted-globals
 //   const [currentPage, setCurrentPage] = useState(Number(sessionStorage.getItem('currentPage')) || 1);
 
 //   useEffect(() => {
 //     sessionStorage.setItem('currentPage', String(currentPage));
 //   });
+
+//   useImperativeHandle(ref, () => ({
+//     reSetTag: () => setTag('')
+//   }));
+
+//   const post = props.posts.find(({ url }) => url === (props.match.params as any).post_title);
+//   console.log('post:', props.match);
 
 //   return (
 //     <>
@@ -49,6 +56,7 @@ const Post = lazy(() => import('./Post'));
 //               {...props.posts.find(
 //                 ({ url }) => url === (props.match.params as any).post_title
 //               )!}
+//               {...post!}
 //               onSetTag={setTag}
 //             />
 //           </Suspense>
@@ -56,7 +64,7 @@ const Post = lazy(() => import('./Post'));
 //       />
 //     </>
 //   );
-// }
+// });
 
 // export default PostLayout;
 
@@ -115,7 +123,7 @@ export default class PostLayout extends React.Component<
           )}
         />
         <Route
-          path={`${this.props.match.path}/:post_title`}
+          path={`/post/:post_title`}
           render={props => (
             <Suspense
               fallback={

@@ -70,7 +70,7 @@ const PostList: React.SFC<RouteComponentProps & PostListProp> = props => {
             <div className="post">
               <div className="post-text-wrapper">
                 <Title className="post-title" level={3}>
-                  <Link to={`/posts/${post.url}`}>
+                  <Link to={`/post/${post.url}`}>
                     {post.type === 'todo' ? `[坑] ${post.title}` : post.title}
                   </Link>
                 </Title>
@@ -84,7 +84,7 @@ const PostList: React.SFC<RouteComponentProps & PostListProp> = props => {
                   {post.tags.map(tag => (
                     <Link
                       key={tag}
-                      to={`${props.match.url}#${tag}`}
+                      to={`/#${tag}`}
                       className="tag"
                       onClick={() => props.onSetTag(tag)}
                     >

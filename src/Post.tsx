@@ -45,7 +45,7 @@ const Post: React.SFC<PostProps & ExPostProps & RouteComponentProps> = props => 
         {props.tags.map(tag => (
           <span key={tag}>
             <Link
-              to={`/posts#${tag}`}
+              to={`/#${tag}`}
               className="mata-link"
               onClick={() => props.onSetTag(tag)}
             >
