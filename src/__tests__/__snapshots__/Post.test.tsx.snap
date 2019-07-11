@@ -1,0 +1,400 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`wtf 1`] = `
+Array [
+  <h1>
+    A very basic understanding of subtyping
+  </h1>,
+  <div
+    className="mata"
+  >
+    <span>
+      <a
+        className="mata-link"
+        href="/"
+        onClick={[Function]}
+      >
+        fuafa
+      </a>
+    </span>
+    <span>
+      |
+    </span>
+    <span>
+      2018.12.25
+    </span>
+    <span>
+      |
+    </span>
+    <span>
+      <a
+        className="mata-link"
+        href="/tag/Typing"
+        onClick={[Function]}
+      >
+        #
+        Typing
+      </a>
+    </span>
+    <span>
+      <a
+        className="mata-link"
+        href="/tag/TypeScript"
+        onClick={[Function]}
+      >
+        #
+        TypeScript
+      </a>
+    </span>
+  </div>,
+  <blockquote>
+    <p>
+      The very first time I met type system is back to my college age when I studied my first programming language Java, but at that time I didn't really know what it actualy means. It is the SML programming language that made me recognize a type system is not just about trivially anotating a value, but also can be expressive and elegant with many interesting features, and the subtyping is one of them.
+    </p>
+  </blockquote>,
+  <p>
+    Honestly, I didn't learn 
+    <code>
+      subtyping
+    </code>
+     from SML since it doesn't have one. SML instead uses another feature called 
+    <code>
+      polymorphism
+    </code>
+     which is also known as 
+    <code>
+      generic
+    </code>
+    . Some may treat 
+    <code>
+      subtyping
+    </code>
+     as a kind of 
+    <code>
+      polymorphism
+    </code>
+     as well, so 
+    <code>
+      subtyping
+    </code>
+     is also called 
+    <code>
+      polymorphism subtypes
+    </code>
+    .
+  </p>,
+  <h2>
+    What is subtyping
+  </h2>,
+  <p>
+    The 
+    <a
+      href="https://www.wikiwand.com/en/Subtyping"
+    >
+      WIKI
+    </a>
+     has a very clear description of what it is, so I will not give a formal definition here. Instead, I'd like to give some demostrations in TypeScript and see how TypeScript handles 
+    <code>
+      subtyping
+    </code>
+     relation and a little 
+    <code>
+      polymorphism
+    </code>
+     as well.
+  </p>,
+  <p>
+    The following codes are run in TypeScript 3.2.x, with 
+    <code>
+      strict
+    </code>
+     option on.
+  </p>,
+  <h2>
+    Width subtyping
+  </h2>,
+  <p>
+    Say a function like this:
+  </p>,
+  <pre>
+    <code
+      className="language-ts"
+    >
+      function foo(o: {x: number, y: string}): number {
+  return x + 1
+}
+    </code>
+  </pre>,
+  <p>
+    When a 
+    <code>
+      foo
+    </code>
+     function is called, what kind of parameter can we pass into it? Of caurse a value has type
+  </p>,
+  <pre>
+    <code
+      className="language-ts"
+    >
+      type T = {x: number, y: string}
+    </code>
+  </pre>,
+  <p>
+    will never be wrong. In addition, we can pass extra more informations say
+  </p>,
+  <pre>
+    <code
+      className="language-ts"
+    >
+      type R = {x: numebr, y: string, z: boolean}
+    </code>
+  </pre>,
+  <p>
+    Since the extra property 
+    <code>
+      z
+    </code>
+     will not be accessed in the function body, any number of extra properties are considered no harm, so we say type 
+    <code>
+      R
+    </code>
+     is a more specialized the type 
+    <code>
+      T
+    </code>
+    , and 
+    <code>
+      R
+    </code>
+     is a subtype of 
+    <code>
+      T
+    </code>
+    , notating as 
+    <code>
+      R &lt;: T
+    </code>
+    , any term expected a type 
+    <code>
+      T
+    </code>
+     can be substituted by a type 
+    <code>
+      R
+    </code>
+     with safe. TypeScript handles most of the situations like this, but not for situation like passing object literal directly, it will be treated specially and undergo 
+    <code>
+      excess property checking
+    </code>
+     which would think extra properties are bugs (when mix with optional type, TypeScript pretends it's a typo as they describes in document). TypeScript suggests two work arounds for this:
+  </p>,
+  <pre>
+    <code
+      className="language-ts"
+    >
+      foo({x: 1, y: '', z: true}) // error due to excess property check
+// 1. Use string index signature to indicate there may be extra properties
+interface ParameterType {
+    y?: string;
+    x?: number;
+    [propName: string]: any;
+}
+
+// 2. Assign the object to another variable
+const otherObj = { x: 1, y: '', z: true }
+foo(otherObj)
+    </code>
+  </pre>,
+  <h2>
+    Depth subtyping
+  </h2>,
+  <p>
+    The 
+    <code>
+      Width subtyping
+    </code>
+     says a type 
+    <code>
+      A
+    </code>
+     with more properties is considered a subtype of a type 
+    <code>
+      B
+    </code>
+     with less properties but all included in type 
+    <code>
+      A
+    </code>
+    , which doesn't hold when 
+    <code>
+      B
+    </code>
+     has a field with a different type than in 
+    <code>
+      A
+    </code>
+    . Consider situation like this:
+  </p>,
+  <pre>
+    <code
+      className="language-ts"
+    >
+      function bar(o: { nested: { x: number, y: string }, r: boolean }) {
+  o.nested = { x: 1, y: 'y' }
+}
+const obj = {
+  nested: {
+    x: 1,
+    y: 'y',
+    z: 'x'
+  },
+  r: true
+}
+bar(obj)
+const _ = obj.nested.z // break the type system
+    </code>
+  </pre>,
+  <p>
+    If a type system sees 
+    <code>
+      type A = typeof obj
+    </code>
+     is a subtype of 
+    <code>
+      type B = Parameters&lt;typeof bar&gt;
+    </code>
+    , and mutation is permitted in a record field, then the type system is unsound. TypeScript is unsound that it permits 
+    <code>
+      A &lt;: B
+    </code>
+     along with mutation.
+  </p>,
+  <p>
+    Note: if the record field is immuatable, then the 
+    <code>
+      depth subtyping
+    </code>
+     is sound. So this is yet another example of how not mutation makes programming easy.
+  </p>,
+  <h2>
+    Subtyping of Array
+  </h2>,
+  <p>
+    Array's subtyping relation matches the depth subtyping rule. For TypeScript, Arrays are covariance, which means 
+    <code>
+      A &lt;: B
+    </code>
+    , then 
+    <code>
+      A[] &lt;: B[]
+    </code>
+    . If mutation is permitted, then this subtyping relataion is unsound. This behavior is much like Java who used this rule for reusable and flexible before having generic. But Java also supplies a runtime check for mutation, and if a mutation does happen, it will raise a 
+    <code>
+      ArrayStoreException
+    </code>
+     and reject the mutation. This kind of runtime check doesn't hold for TypeScript since type informations are erased in runtime.
+  </p>,
+  <h2>
+    Subtyping of function
+  </h2>,
+  <p>
+    To determine if a function 
+    <code>
+      foo
+    </code>
+     is a subtype of another function 
+    <code>
+      bar
+    </code>
+    , there are two rules should hold:
+  </p>,
+  <ol>
+    <li>
+      Function's parameter types are 
+      <strong>
+        contravirant
+      </strong>
+      , which means if 
+      <code>
+        A &lt;: B
+      </code>
+      , then 
+      <code>
+        B =&gt; R &lt;: A =&gt; R
+      </code>
+    </li>
+    <li>
+      Function's return types are 
+      <strong>
+        covariant
+      </strong>
+      , which means if 
+      <code>
+        A &lt;: B
+      </code>
+      , then 
+      <code>
+        P =&gt; A &lt;: P =&gt; B
+      </code>
+    </li>
+  </ol>,
+  <p>
+    In general, if 
+    <code>
+      A &lt;: B
+    </code>
+    , then 
+    <code>
+      B =&gt; A &lt;: A =&gt; B
+    </code>
+    . For TypeScript, this rule holds for function, but does not for class method.
+  </p>,
+  <h2>
+    Bounded Polymorphism
+  </h2>,
+  <p>
+    Since subtyping is also one kind polymorphism, for a language just has either generic or subtyping, one may consider use either alternatively. However it may be considered a bad decision.
+  </p>,
+  <ol>
+    <li>
+      Use subtyping instead of generic would need extra type casting which is dangerous.
+    </li>
+    <li>
+      Use generic instead of subtyping would be at a cost of significantly less code reuse.
+    </li>
+  </ol>,
+  <p>
+    So for a modern OOP language, it is commonly suppling both, that is 
+    <code>
+      boundeed polymorphism
+    </code>
+    . Instead of just saying 
+    <strong>
+      a subtype of T
+    </strong>
+     or 
+    <strong>
+      for all types T
+    </strong>
+    , a 
+    <code>
+      bounded polymorphism
+    </code>
+     is 
+    <strong>
+      for all types T which is a subtype of R
+    </strong>
+    , written as:
+  </p>,
+  <pre>
+    <code
+      className="language-ts"
+    >
+      type A&lt;T extends R&gt; = ...
+    </code>
+  </pre>,
+  <p>
+    This feature give a type more restriction than just generic and more expressiveness and code reuse than just subtyping.
+  </p>,
+]
+`;

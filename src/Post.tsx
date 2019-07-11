@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import ReactMarkdown from 'react-markdown';
 import 'highlight.js/styles/atom-one-light.css';
 import './Post.css';
-import { Link, RouteComponentProps } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 export interface PostProps {
   content: string;
@@ -17,7 +17,7 @@ export interface PostProps {
 }
 
 
-const Post: React.SFC<PostProps & RouteComponentProps> = props => {
+const Post: React.SFC<PostProps> = props => {
   useEffect(() => {
     import('highlight.js').then(hljs => {
       document.querySelectorAll('pre code').forEach(block => {

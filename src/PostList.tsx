@@ -4,14 +4,6 @@ import { Tag, Typography, Divider, Pagination } from 'antd';
 import { PostProps } from './Post';
 import './PostList.css';
 
-export interface PostListProp {
-  posts: PostProps[];
-};
-type ListType = 'all' | 'hidden' | 'todo' | 'completed';
-type PostsRouterParam = {
-  tag?: string
-};
-
 const COLORS = [
   'magenta',
   'red',
@@ -25,6 +17,18 @@ const COLORS = [
   'geekblue',
   'purple'
 ] as const;
+
+export interface PostListProp {
+  posts: PostProps[];
+  // 测试用
+  color?: typeof COLORS[number]
+};
+type ListType = 'all' | 'hidden' | 'todo' | 'completed';
+type PostsRouterParam = {
+  tag?: string
+};
+
+
 const PER_PAGE = 5;
 const { Title, Paragraph } = Typography;
 
@@ -72,7 +76,7 @@ const PostList: React.SFC<RouteComponentProps<PostsRouterParam> & PostListProp> 
     <Typography>
       <h2 className="tag-title">
         {tag && (
-          <Tag color={COLORS[Math.floor(Math.random() * COLORS.length)]}>
+          <Tag color={props.color || COLORS[Math.floor(Math.random() * COLORS.length)]}>
             {tag} 话题
           </Tag>
         )}
@@ -103,7 +107,7 @@ const PostList: React.SFC<RouteComponentProps<PostsRouterParam> & PostListProp> 
                     >
                       <Tag
                         color={
-                          COLORS[Math.floor(Math.random() * COLORS.length)]
+                          props.color || COLORS[Math.floor(Math.random() * COLORS.length)]
                         }
                       >
                         {tag}

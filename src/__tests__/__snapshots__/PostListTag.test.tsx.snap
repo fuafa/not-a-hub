@@ -1,0 +1,556 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render all posts 1`] = `
+<article
+  className="ant-typography"
+>
+  <h2
+    className="tag-title"
+  />
+  <ul>
+    <li>
+      <div
+        className="post"
+      >
+        <div
+          className="post-text-wrapper"
+        >
+          <h3
+            aria-label={null}
+            className="ant-typography post-title"
+            style={
+              Object {
+                "WebkitLineClamp": null,
+              }
+            }
+          >
+            <a
+              href="/post/BuildinType"
+              onClick={[Function]}
+            >
+              TypeScript built-in types
+            </a>
+          </h3>
+          <div
+            aria-label={null}
+            className="ant-typography post-desc"
+            style={
+              Object {
+                "WebkitLineClamp": null,
+              }
+            }
+          >
+            A walk through of Typescript built-in types. Since it is just a rebuild of what TypeScript had built for us, without much further research, so this post is considered meaningless and recap only.
+          </div>
+          <div
+            className="post-info-wrapper"
+          >
+            <span
+              className="post-info"
+            >
+              <a
+                href="/"
+                onClick={[Function]}
+              >
+                初号复读机
+                 
+              </a>
+              edited on 
+              2018.09.10
+            </span>
+            <span
+              className="post-info"
+            >
+              |
+            </span>
+            <a
+              className="tag"
+              href="/tag/复读机"
+              onClick={[Function]}
+            >
+              <div
+                className="ant-tag ant-tag-blue"
+                style={
+                  Object {
+                    "backgroundColor": undefined,
+                  }
+                }
+              >
+                复读机
+              </div>
+            </a>
+            <a
+              className="tag"
+              href="/tag/TypeScript"
+              onClick={[Function]}
+            >
+              <div
+                className="ant-tag ant-tag-blue"
+                style={
+                  Object {
+                    "backgroundColor": undefined,
+                  }
+                }
+              >
+                TypeScript
+              </div>
+            </a>
+          </div>
+        </div>
+        <div
+          className="post-cover"
+        />
+      </div>
+      <div
+        className="ant-divider ant-divider-horizontal"
+      />
+    </li>
+    <li>
+      <div
+        className="post"
+      >
+        <div
+          className="post-text-wrapper"
+        >
+          <h3
+            aria-label={null}
+            className="ant-typography post-title"
+            style={
+              Object {
+                "WebkitLineClamp": null,
+              }
+            }
+          >
+            <a
+              href="/post/IntersectionPrimitive"
+              onClick={[Function]}
+            >
+              Intersection of Primitive types
+            </a>
+          </h3>
+          <div
+            aria-label={null}
+            className="ant-typography post-desc"
+            style={
+              Object {
+                "WebkitLineClamp": null,
+              }
+            }
+          >
+            Why at all TypeScript allows type T = number & string.
+          </div>
+          <div
+            className="post-info-wrapper"
+          >
+            <span
+              className="post-info"
+            >
+              <a
+                href="/"
+                onClick={[Function]}
+              >
+                fuafa
+                 
+              </a>
+              edited on 
+              2018.12.04
+            </span>
+            <span
+              className="post-info"
+            >
+              |
+            </span>
+            <a
+              className="tag"
+              href="/tag/TypeScript"
+              onClick={[Function]}
+            >
+              <div
+                className="ant-tag ant-tag-blue"
+                style={
+                  Object {
+                    "backgroundColor": undefined,
+                  }
+                }
+              >
+                TypeScript
+              </div>
+            </a>
+          </div>
+        </div>
+        <div
+          className="post-cover"
+        />
+      </div>
+      <div
+        className="ant-divider ant-divider-horizontal"
+      />
+    </li>
+    <li>
+      <div
+        className="post"
+      >
+        <div
+          className="post-text-wrapper"
+        >
+          <h3
+            aria-label={null}
+            className="ant-typography post-title"
+            style={
+              Object {
+                "WebkitLineClamp": null,
+              }
+            }
+          >
+            <a
+              href="/post/Subtyping"
+              onClick={[Function]}
+            >
+              A very basic understanding of subtyping
+            </a>
+          </h3>
+          <div
+            aria-label={null}
+            className="ant-typography post-desc"
+            style={
+              Object {
+                "WebkitLineClamp": null,
+              }
+            }
+          >
+            The very first time I met type system is back to my college age when I studied my first programming language Java, but at that time I didn't really know what it actualy means. It is the SML programming language that made me recognize a type system is not just about trivially anotating a value, but also can be expressive and elegant with many interesting features, and the subtyping is one of them.
+          </div>
+          <div
+            className="post-info-wrapper"
+          >
+            <span
+              className="post-info"
+            >
+              <a
+                href="/"
+                onClick={[Function]}
+              >
+                fuafa
+                 
+              </a>
+              edited on 
+              2018.12.25
+            </span>
+            <span
+              className="post-info"
+            >
+              |
+            </span>
+            <a
+              className="tag"
+              href="/tag/Typing"
+              onClick={[Function]}
+            >
+              <div
+                className="ant-tag ant-tag-blue"
+                style={
+                  Object {
+                    "backgroundColor": undefined,
+                  }
+                }
+              >
+                Typing
+              </div>
+            </a>
+            <a
+              className="tag"
+              href="/tag/TypeScript"
+              onClick={[Function]}
+            >
+              <div
+                className="ant-tag ant-tag-blue"
+                style={
+                  Object {
+                    "backgroundColor": undefined,
+                  }
+                }
+              >
+                TypeScript
+              </div>
+            </a>
+          </div>
+        </div>
+        <div
+          className="post-cover"
+        />
+      </div>
+      <div
+        className="ant-divider ant-divider-horizontal"
+      />
+    </li>
+    <li>
+      <div
+        className="post"
+      >
+        <div
+          className="post-text-wrapper"
+        >
+          <h3
+            aria-label={null}
+            className="ant-typography post-title"
+            style={
+              Object {
+                "WebkitLineClamp": null,
+              }
+            }
+          >
+            <a
+              href="/post/ThisType"
+              onClick={[Function]}
+            >
+              [坑] ThisType of TypeScript
+            </a>
+          </h3>
+          <div
+            aria-label={null}
+            className="ant-typography post-desc"
+            style={
+              Object {
+                "WebkitLineClamp": null,
+              }
+            }
+          >
+            Coming...
+          </div>
+          <div
+            className="post-info-wrapper"
+          >
+            <span
+              className="post-info"
+            >
+              <a
+                href="/"
+                onClick={[Function]}
+              >
+                一号复读机
+                 
+              </a>
+              edited on 
+              2018.10.21
+            </span>
+            <span
+              className="post-info"
+            >
+              |
+            </span>
+            <a
+              className="tag"
+              href="/tag/TypeScript"
+              onClick={[Function]}
+            >
+              <div
+                className="ant-tag ant-tag-blue"
+                style={
+                  Object {
+                    "backgroundColor": undefined,
+                  }
+                }
+              >
+                TypeScript
+              </div>
+            </a>
+            <a
+              className="tag"
+              href="/tag/复读机"
+              onClick={[Function]}
+            >
+              <div
+                className="ant-tag ant-tag-blue"
+                style={
+                  Object {
+                    "backgroundColor": undefined,
+                  }
+                }
+              >
+                复读机
+              </div>
+            </a>
+          </div>
+        </div>
+        <div
+          className="post-cover"
+        />
+      </div>
+      <div
+        className="ant-divider ant-divider-horizontal"
+      />
+    </li>
+    <li>
+      <div
+        className="post"
+      >
+        <div
+          className="post-text-wrapper"
+        >
+          <h3
+            aria-label={null}
+            className="ant-typography post-title"
+            style={
+              Object {
+                "WebkitLineClamp": null,
+              }
+            }
+          >
+            <a
+              href="/post/TypeGuard"
+              onClick={[Function]}
+            >
+              [坑] any, never, unknown in TypeScript
+            </a>
+          </h3>
+          <div
+            aria-label={null}
+            className="ant-typography post-desc"
+            style={
+              Object {
+                "WebkitLineClamp": null,
+              }
+            }
+          >
+            um...
+          </div>
+          <div
+            className="post-info-wrapper"
+          >
+            <span
+              className="post-info"
+            >
+              <a
+                href="/"
+                onClick={[Function]}
+              >
+                fuafa
+                 
+              </a>
+              edited on 
+              2018.10.10
+            </span>
+            <span
+              className="post-info"
+            >
+              |
+            </span>
+            <a
+              className="tag"
+              href="/tag/TypeScript"
+              onClick={[Function]}
+            >
+              <div
+                className="ant-tag ant-tag-blue"
+                style={
+                  Object {
+                    "backgroundColor": undefined,
+                  }
+                }
+              >
+                TypeScript
+              </div>
+            </a>
+          </div>
+        </div>
+        <div
+          className="post-cover"
+        />
+      </div>
+      <div
+        className="ant-divider ant-divider-horizontal"
+      />
+    </li>
+  </ul>
+  <ul
+    className="ant-pagination "
+    style={Object {}}
+    unselectable="unselectable"
+  >
+    <li
+      aria-disabled={true}
+      className="ant-pagination-disabled ant-pagination-prev"
+      onClick={[Function]}
+      onKeyPress={[Function]}
+      tabIndex={null}
+      title="Previous Page"
+    >
+      <a
+        className="ant-pagination-item-link"
+      >
+        <i
+          aria-label="icon: left"
+          className="anticon anticon-left"
+        >
+          <svg
+            aria-hidden="true"
+            className=""
+            data-icon="left"
+            fill="currentColor"
+            height="1em"
+            viewBox="64 64 896 896"
+            width="1em"
+          >
+            <path
+              d="M724 218.3V141c0-6.7-7.7-10.4-12.9-6.3L260.3 486.8a31.86 31.86 0 0 0 0 50.3l450.8 352.1c5.3 4.1 12.9.4 12.9-6.3v-77.3c0-4.9-2.3-9.6-6.1-12.6l-360-281 360-281.1c3.8-3 6.1-7.7 6.1-12.6z"
+            />
+          </svg>
+        </i>
+      </a>
+    </li>
+    <li
+      className="ant-pagination-item ant-pagination-item-1 ant-pagination-item-active"
+      onClick={[Function]}
+      onKeyPress={[Function]}
+      tabIndex="0"
+      title={1}
+    >
+      <a>
+        1
+      </a>
+    </li>
+    <li
+      className="ant-pagination-item ant-pagination-item-2"
+      onClick={[Function]}
+      onKeyPress={[Function]}
+      tabIndex="0"
+      title={2}
+    >
+      <a>
+        2
+      </a>
+    </li>
+    <li
+      aria-disabled={false}
+      className=" ant-pagination-next"
+      onClick={[Function]}
+      onKeyPress={[Function]}
+      tabIndex={0}
+      title="Next Page"
+    >
+      <a
+        className="ant-pagination-item-link"
+      >
+        <i
+          aria-label="icon: right"
+          className="anticon anticon-right"
+        >
+          <svg
+            aria-hidden="true"
+            className=""
+            data-icon="right"
+            fill="currentColor"
+            height="1em"
+            viewBox="64 64 896 896"
+            width="1em"
+          >
+            <path
+              d="M765.7 486.8L314.9 134.7A7.97 7.97 0 0 0 302 141v77.3c0 4.9 2.3 9.6 6.1 12.6l360 281.1-360 281.1c-3.9 3-6.1 7.7-6.1 12.6V883c0 6.7 7.7 10.4 12.9 6.3l450.8-352.1a31.96 31.96 0 0 0 0-50.4z"
+            />
+          </svg>
+        </i>
+      </a>
+    </li>
+  </ul>
+</article>
+`;
