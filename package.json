@@ -5,7 +5,6 @@
   "dependencies": {
     "@types/jest": "23.3.9",
     "@types/node": "10.12.10",
-    "@types/react-dom": "16.0.10",
     "@types/react-loadable": "^5.4.2",
     "@types/redux": "^3.6.0",
     "antd": "^3.15.1",
@@ -57,7 +56,8 @@
     "@types/enzyme": "^3.10.2",
     "@types/enzyme-adapter-react-16": "^1.0.5",
     "@types/highlight.js": "^9.12.3",
-    "@types/react": "^16.8.8",
+    "@types/react": "^16.8.23",
+    "@types/react-dom": "^16.0.10",
     "@types/react-router-dom": "^4.3.1",
     "@types/react-test-renderer": "^16.8.2",
     "babel-plugin-import": "^1.11.0",
