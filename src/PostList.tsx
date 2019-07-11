@@ -127,8 +127,9 @@ const PostList: React.SFC<RouteComponentProps<PostsRouterParam> & PostListProp> 
       <Pagination
         // Warning: State updates from the useState() and useReducer() Hooks don't support the second callback argument.
         // To execute a side effect after rendering, declare it in the component body with useEffect().
-        // 什么意思呢？
-        onChange={setPage}
+        // https://github.com/facebook/react/issues/14174
+        // The unnessesary wrapped function is used for solving the above warning. From `onChange={setPage}` -> `onChange={newPage => setPage(newPage)}`
+        onChange={newPage => setPage(newPage)}
         total={total}
         pageSize={PER_PAGE}
         current={currentPage}
