@@ -39,8 +39,7 @@
     "eject": "react-scripts eject",
     "predeploy": "yarn build",
     "deploy": "gh-pages -d build",
-    "gen-json": "node task/post.js",
-    "rsync": "rsync -avze 'ssh -p 27288' /Users/elfa/Documents/ts-react-20181123/build root@67.209.190.91:/root/blog"
+    "gen-json": "node task/post.js"
   },
   "eslintConfig": {
     "extends": "react-app"
