@@ -14,7 +14,7 @@ const PostLayout: React.SFC<RouteComponentProps<RouterParams> & PostListProp> = 
   return (
     <>
       <Route
-        path={[props.match.path, `${props.match.path}tag/:tag`]}
+        path={[props.match.path, `${props.match.path}tag/:tag`, `${props.match.path}page/:page`, `${props.match.path}tag/:tag/page/:page`]}
         exact
         render={routeProps => (
           <PostList

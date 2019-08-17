@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link, RouteComponentProps } from 'react-router-dom';
 import { Tag, Typography, Divider, Pagination } from 'antd';
+// import usePager from './hooks/usePager';
+// import usePrevious from './hooks/usePrevious';
 import { PostProps } from './Post';
 import './PostList.css';
 
@@ -25,7 +27,8 @@ export interface PostListProp {
 };
 type ListType = 'all' | 'hidden' | 'todo' | 'completed';
 type PostsRouterParam = {
-  tag?: string
+  tag?: string;
+  page?: string;
 };
 
 
@@ -35,21 +38,24 @@ const { Title, Paragraph } = Typography;
 const PostList: React.SFC<RouteComponentProps<PostsRouterParam> & PostListProp> = props => {
   let posts;
   const [listType] = useState<ListType>('all');
-  const [currentPage, setPage] = useState(Number(sessionStorage.getItem('currentPage')) || 1);
   const tag = props.match.params.tag;
+  const page = props.match.params.page;
+  // 渲染两次
+  // console.log('haha', props.match.params);
+  const [currentPage, setPage] = useState(Number(page) || 1);
+  // const prevPage = usePrevious(currentPage);
 
   useEffect(() => {
-    setPage(1);
+    // if (prevPage === Number(page)) {
+    //   return;
+    // }
+    setPage(Number(page) || 1);
     // React Hook useEffect has a missing dependency: 'props'.
     // Either include it or remove the dependency array.
     // However, 'props' will change when *any* prop changes,
     // so the preferred fix is to destructure the 'props' object outside of the useEffect call and refer to those specific props inside useEffect  react-hooks/exhaustive-deps
     // https://reactjs.org/docs/hooks-faq.html#is-it-safe-to-omit-functions-from-the-list-of-dependencies
-  }, [tag]);
-
-  useEffect(() => {
-    sessionStorage.setItem('currentPage', `${currentPage}`);
-  });
+  }, [page]);
 
   if (tag) {
     posts = props.posts.filter(post =>
@@ -103,7 +109,7 @@ const PostList: React.SFC<RouteComponentProps<PostsRouterParam> & PostListProp> 
                       key={tag}
                       to={`/tag/${tag}`}
                       className="tag"
-                      onClick={() => setPage(1)}
+                      // onClick={() => setPage(1)}
                     >
                       <Tag
                         color={
@@ -129,7 +135,11 @@ const PostList: React.SFC<RouteComponentProps<PostsRouterParam> & PostListProp> 
         // To execute a side effect after rendering, declare it in the component body with useEffect().
         // https://github.com/facebook/react/issues/14174
         // The unnessesary wrapped function is used for solving the above warning. From `onChange={setPage}` -> `onChange={newPage => setPage(newPage)}`
-        onChange={newPage => setPage(newPage)}
+        onChange={newPage => {
+          setPage(newPage);
+          props.history.push(`${tag ? `/tag/${tag}/` : '/'}${newPage && newPage !== 1 ? `page/${newPage}` : ''}`);
+          // window.history.pushState(null, '', `${tag ? `/tag/${tag}/` : '/'}${newPage && newPage !== 1 ? `page/${newPage}` : ''}`);
+        }}
         total={total}
         pageSize={PER_PAGE}
         current={currentPage}
