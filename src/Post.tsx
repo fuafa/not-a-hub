@@ -3,6 +3,7 @@ import ReactMarkdown from 'react-markdown';
 import 'highlight.js/styles/atom-one-light.css';
 import './Post.css';
 import { Link } from 'react-router-dom';
+import ProgressBar from './components/ProgressBar';
 
 export interface PostProps {
   content: string;
@@ -28,6 +29,7 @@ const Post: React.SFC<PostProps> = props => {
 
   return (
     <>
+      <ProgressBar />
       <h1>{props.title}</h1>
       <div className="mata">
         <span>
