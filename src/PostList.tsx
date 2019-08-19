@@ -5,6 +5,7 @@ import { Tag, Typography, Divider, Pagination } from 'antd';
 // import usePrevious from './hooks/usePrevious';
 import { PostProps } from './Post';
 import './PostList.css';
+import { camel2dash } from './utils/utils';
 
 const COLORS = [
   'magenta',
@@ -58,8 +59,9 @@ const PostList: React.SFC<RouteComponentProps<PostsRouterParam> & PostListProp> 
   }, [page]);
 
   if (tag) {
-    posts = props.posts.filter(post =>
-      post.tags.includes(tag)
+    posts = props.posts.filter(post => post.tags
+      .map(tag => tag.toLowerCase())
+      .includes(tag)
     );
   } else {
     posts = [...props.posts];
@@ -83,7 +85,7 @@ const PostList: React.SFC<RouteComponentProps<PostsRouterParam> & PostListProp> 
       <h2 className="tag-title">
         {tag && (
           <Tag color={props.color || COLORS[Math.floor(Math.random() * COLORS.length)]}>
-            {tag} 话题
+            #{tag}
           </Tag>
         )}
       </h2>
@@ -93,7 +95,7 @@ const PostList: React.SFC<RouteComponentProps<PostsRouterParam> & PostListProp> 
             <div className="post">
               <div className="post-text-wrapper">
                 <Title className="post-title" level={3}>
-                  <Link to={`/post/${post.url}`}>
+                  <Link to={`/post/${camel2dash(post.url)}`}>
                     {post.type === 'todo' ? `[坑] ${post.title}` : post.title}
                   </Link>
                 </Title>
@@ -107,7 +109,7 @@ const PostList: React.SFC<RouteComponentProps<PostsRouterParam> & PostListProp> 
                   {post.tags.map(tag => (
                     <Link
                       key={tag}
-                      to={`/tag/${tag}`}
+                      to={`/tag/${tag.toLowerCase()}`}
                       className="tag"
                       // onClick={() => setPage(1)}
                     >

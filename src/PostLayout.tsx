@@ -2,6 +2,7 @@ import React, { lazy, Suspense, forwardRef, ForwardRefExoticComponent, useState,
 import { Route, RouteComponentProps } from 'react-router-dom';
 import { Icon } from 'antd';
 import PostList, { PostListProp } from './PostList';
+import { camel2dash } from './utils/utils'
 
 type RouterParams = {
   post_title: string
@@ -36,7 +37,7 @@ const PostLayout: React.SFC<RouteComponentProps<RouterParams> & PostListProp> = 
             <Post
               {...routeProps}
               {...props.posts.find(
-                ({ url }) => url === routeProps.match.params.post_title
+                ({ url }) => camel2dash(url) === routeProps.match.params.post_title
               )!}
             />
           </Suspense>
