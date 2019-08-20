@@ -6,20 +6,7 @@ import { Tag, Typography, Divider, Pagination } from 'antd';
 import { PostProps } from './Post';
 import './PostList.css';
 import { camel2dash } from './utils/utils';
-
-const COLORS = [
-  'magenta',
-  'red',
-  'volcano',
-  'orange',
-  'gold',
-  'lime',
-  'green',
-  'cyan',
-  'blue',
-  'geekblue',
-  'purple'
-] as const;
+import { COLORS } from './shared/constant';
 
 export interface PostListProp {
   posts: PostProps[];
