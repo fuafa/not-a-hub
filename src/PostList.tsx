@@ -87,7 +87,7 @@ const PostList: React.SFC<RouteComponentProps<PostsRouterParam> & PostListProp> 
                   </Link>
                 </Title>
                 <Paragraph className="post-desc">{post.desc}</Paragraph>
-                <div className="post-info-wrapper">
+                <div className="post-info-wrapper" style={{ fontStyle: 'italic'}}>
                   <span className="post-info">
                     <Link to="/">{post.author} </Link>
                     edited on {post.date}
@@ -104,6 +104,7 @@ const PostList: React.SFC<RouteComponentProps<PostsRouterParam> & PostListProp> 
                         color={
                           props.color || COLORS[Math.floor(Math.random() * COLORS.length)]
                         }
+                        style={{ cursor: 'pointer' }}
                       >
                         {tag}
                       </Tag>

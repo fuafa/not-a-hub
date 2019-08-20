@@ -1,9 +1,11 @@
-import React, { useEffect } from 'react';
-import ReactMarkdown from 'react-markdown';
+import React from 'react';
 import 'highlight.js/styles/atom-one-light.css';
 import './Post.css';
 import { Link } from 'react-router-dom';
+import html2React from 'html-react-parser';
+import { Tag, Divider } from 'antd';
 import ProgressBar from './components/ProgressBar';
+import { COLORS } from './shared/constant';
 
 export interface PostProps {
   content: string;
@@ -19,19 +21,13 @@ export interface PostProps {
 
 
 const Post: React.SFC<PostProps> = props => {
-  useEffect(() => {
-    import('highlight.js').then(hljs => {
-      document.querySelectorAll('pre code').forEach(block => {
-        hljs.highlightBlock(block);
-      });
-    });
-  });
-
   return (
     <>
       <ProgressBar />
       <h1>{props.title}</h1>
-      <div className="mata">
+      <div className="mata" style={{
+        marginBottom: '20px'
+      }}>
         <span>
           <Link to="/" className="mata-link">
             {props.author}
@@ -41,20 +37,22 @@ const Post: React.SFC<PostProps> = props => {
         <span>{props.date}</span>
         <span>|</span>
         {props.tags.map(tag => (
-          <span key={tag}>
-            <Link
-              to={`/tag/${tag}`}
-              className="mata-link"
-            >
-              #{tag}
-            </Link>
-          </span>
+          <Link
+            to={`/tag/${tag.toLowerCase()}`}
+            className="mata-link"
+            key={tag}
+          >
+            {/* #{tag} */}
+            <Tag color={COLORS[Math.floor(Math.random() * COLORS.length)]} style={{cursor: 'pointer'}}>{tag}</Tag>
+          </Link>
         ))}
       </div>
-      <blockquote>
-        <p>{props.desc}</p>
-      </blockquote>
-      <ReactMarkdown source={props.content} />
+      <p style={{
+        fontStyle: 'italic'
+      }}>{props.desc.toUpperCase()}</p>
+      <Divider />
+      {/* <ReactMarkdown source={props.content} /> */}
+      {html2React(props.content)}
     </>
   );
 }
