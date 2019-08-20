@@ -32,19 +32,28 @@ class App extends Component {
     return (
       <Router>
         <Layout className="App" style={{ backgroundColor: '#fff' }}>
-          <Header className="App-header" style={{ textAlign: 'center' }}>
-            {/* 怎么重置 currentPage 啊 */}
-            <Link to="/">
-              <Icon component={Logo} className="App-logo" />
-            </Link>
+          <Header className="App-header">
+            <div style={{
+                maxWidth: '660px',
+                margin: '20px auto',
+                display: 'flex',
+                // justifyContent: 'space-between',
+                justifyContent: 'flex-end',
+                alignItems: 'center',
+                // flexDirection: 'row-reverse',
+            }}>
+              <div className="App-header-item-container" style={{
+                justifySelf: 'flex-start',
+                marginRight: 'auto',
+              }}><Link to="/" className="App-header-item">
+                <Icon component={Logo} className="App-logo" />
+              </Link></div>
+              <div className="App-header-item-container"><Link to="/" className="App-header-item">我的 PR 不可能被 Approved</Link></div>
+              {/* <div className="App-header-item-container"><Link to="/" className="App-header-item">Demo Oriented</Link></div> */}
+          </div>
           </Header>
           <Content className="App-content">
-            {/* <Route
-              path="/"
-              exact={true}
-              render={() => <Redirect to="/posts" />}
-            /> */}
-            <Route
+           <Route
               path="/"
               render={props => (
                 <PostLayout {...props} posts={Posts} />

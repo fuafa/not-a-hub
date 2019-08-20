@@ -7,14 +7,19 @@
   min-height: 100%;
 }
 
+.App-header-item-container {
+  margin-left: 20px;
+}
+.App-header-item {
+  color: #ffadd2;
+}
+.App-header-item:hover {
+  color: #eb2f96;
+}
 .App-logo {
   /* animation: App-logo-spin infinite 20s linear; */
   font-size: 30px;
-  color: #fff;
-  line-height: 2.2;
-}
-.App-logo:hover {
-  color: #eb2f96;
+  /* line-height: 2.2; */
 }
 .App-social {
   color: rgb(85, 85, 85);
@@ -27,7 +32,7 @@
 }
 
 .App-header {
-  background-color: #425c95;
+  background-color: #fff;
   color: white;
   margin-bottom: 55px;
 }
