@@ -1,16 +1,19 @@
 // @ts-check
 const fs = require('fs')
-// const path = require('path')
-// const React = require('react')
-// const ReactDOM = require('react-dom')
-// const ReactMarkdown = require('react-markdown')
-// const yaml = require('js-yaml')
 const yamlFront = require('gray-matter')
-// const diff = require('diff')
+const hljs = require('highlight.js')
+// const html2React = require('html-react-parser');
+const mdIt = require('markdown-it')({
+  highlight: (str, lang) => {
+    if (lang && hljs.getLanguage(lang)) {
+      try {
+        return hljs.highlight(lang, str).value;
+      } catch (__) {}
+    }
 
-// import fs from "fs";
-// import React from 'react'
-// import ReactMarkdown from "react-markdown";
+    return ''; // use external default escaping
+  }
+})
 
 const sourcePostsPath = './src/posts'
 const outPostsPath = './src/out'
@@ -28,30 +31,9 @@ fs.readFile(postTemplatePath, 'utf8', (err, data) =>
               return
             }
             const postObj = yamlFront(md)
-            const out = data.replace(
-              '%markdown inject%',
-              // delete matadata & escape `
-              // md.slice(md.indexOf('---') !== -1 && md.indexOf('---', 2) + 3).replace(/`/g, '\\`')
-              postObj.content.replace(/`/g, '\\`')
-            )
-            const outPath = path.replace('.md', '')
-
-            /**
-             * Generate tsx file for every md file
-             * no need for now
-             */
-            // fs.writeFile(`${outPostsPath}/${outPath}.tsx`, out, err => {
-            // 	if (!err) {
-            // 		console.log(`Generate ${outPath}.tsx finished`)
-            // 		return
-            // 	}
-            //   console.log(`Generate ${outPath}.tsx failed: ${err}`)
-            //   reject(`An error accur when reading md file ${path} : ${err}`)
-            // })
-
             resolve({
               ...postObj.data,
-              content: postObj.content
+              content: mdIt.render(postObj.content)
             })
           })
         )
