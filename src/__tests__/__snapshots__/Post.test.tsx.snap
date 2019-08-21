@@ -2,11 +2,39 @@
 
 exports[`wtf 1`] = `
 Array [
+  <div
+    className="progress-container"
+    style={
+      Object {
+        "left": "-2px",
+        "position": "fixed",
+        "top": 0,
+        "width": "100%",
+      }
+    }
+  >
+    <span
+      className="used"
+      style={
+        Object {
+          "backgroundColor": "#ccc",
+          "border": "1px solid #ff816f",
+          "display": "block",
+          "width": "0%",
+        }
+      }
+    />
+  </div>,
   <h1>
     A very basic understanding of subtyping
   </h1>,
   <div
     className="mata"
+    style={
+      Object {
+        "marginBottom": "20px",
+      }
+    }
   >
     <span>
       <a
@@ -26,32 +54,54 @@ Array [
     <span>
       |
     </span>
-    <span>
-      <a
-        className="mata-link"
-        href="/tag/Typing"
-        onClick={[Function]}
+    <a
+      className="meta-link"
+      href="/tag/typing"
+      onClick={[Function]}
+    >
+      <span
+        className="ant-tag ant-tag-red"
+        style={
+          Object {
+            "backgroundColor": undefined,
+            "cursor": "pointer",
+          }
+        }
       >
-        #
         Typing
-      </a>
-    </span>
-    <span>
-      <a
-        className="mata-link"
-        href="/tag/TypeScript"
-        onClick={[Function]}
+      </span>
+    </a>
+    <a
+      className="meta-link"
+      href="/tag/typescript"
+      onClick={[Function]}
+    >
+      <span
+        className="ant-tag ant-tag-red"
+        style={
+          Object {
+            "backgroundColor": undefined,
+            "cursor": "pointer",
+          }
+        }
       >
-        #
         TypeScript
-      </a>
-    </span>
+      </span>
+    </a>
   </div>,
-  <blockquote>
-    <p>
-      The very first time I met type system is back to my college age when I studied my first programming language Java, but at that time I didn't really know what it actualy means. It is the SML programming language that made me recognize a type system is not just about trivially anotating a value, but also can be expressive and elegant with many interesting features, and the subtyping is one of them.
-    </p>
-  </blockquote>,
+  <p
+    style={
+      Object {
+        "fontStyle": "italic",
+      }
+    }
+  >
+    THE VERY FIRST TIME I MET TYPE SYSTEM IS BACK TO MY COLLEGE AGE WHEN I STUDIED MY FIRST PROGRAMMING LANGUAGE JAVA, BUT AT THAT TIME I DIDN'T REALLY KNOW WHAT IT ACTUALY MEANS. IT IS THE SML PROGRAMMING LANGUAGE THAT MADE ME RECOGNIZE A TYPE SYSTEM IS NOT JUST ABOUT TRIVIALLY ANOTATING A VALUE, BUT ALSO CAN BE EXPRESSIVE AND ELEGANT WITH MANY INTERESTING FEATURES, AND THE SUBTYPING IS ONE OF THEM.
+  </p>,
+  <div
+    className="ant-divider ant-divider-horizontal"
+    role="separator"
+  />,
   <p>
     Honestly, I didn't learn 
     <code>
@@ -83,9 +133,13 @@ Array [
     </code>
     .
   </p>,
+  "
+",
   <h2>
     What is subtyping
   </h2>,
+  "
+",
   <p>
     The 
     <a
@@ -103,6 +157,8 @@ Array [
     </code>
      as well.
   </p>,
+  "
+",
   <p>
     The following codes are run in TypeScript 3.2.x, with 
     <code>
@@ -110,21 +166,82 @@ Array [
     </code>
      option on.
   </p>,
+  "
+",
   <h2>
     Width subtyping
   </h2>,
+  "
+",
   <p>
     Say a function like this:
   </p>,
+  "
+",
   <pre>
     <code
       className="language-ts"
     >
-      function foo(o: {x: number, y: string}): number {
-  return x + 1
+      <span
+        className="hljs-function"
+      >
+        <span
+          className="hljs-keyword"
+        >
+          function
+        </span>
+         
+        <span
+          className="hljs-title"
+        >
+          foo
+        </span>
+        (
+        <span
+          className="hljs-params"
+        >
+          o: {x: 
+          <span
+            className="hljs-built_in"
+          >
+            number
+          </span>
+          , y: 
+          <span
+            className="hljs-built_in"
+          >
+            string
+          </span>
+          }
+        </span>
+        ): 
+        <span
+          className="hljs-title"
+        >
+          number
+        </span>
+         
+      </span>
+      {
+  
+      <span
+        className="hljs-keyword"
+      >
+        return
+      </span>
+       x + 
+      <span
+        className="hljs-number"
+      >
+        1
+      </span>
+      
 }
+
     </code>
   </pre>,
+  "
+",
   <p>
     When a 
     <code>
@@ -132,23 +249,67 @@ Array [
     </code>
      function is called, what kind of parameter can we pass into it? Of caurse a value has type
   </p>,
+  "
+",
   <pre>
     <code
       className="language-ts"
     >
-      type T = {x: number, y: string}
+      <span
+        className="hljs-keyword"
+      >
+        type
+      </span>
+       T = {x: 
+      <span
+        className="hljs-built_in"
+      >
+        number
+      </span>
+      , y: 
+      <span
+        className="hljs-built_in"
+      >
+        string
+      </span>
+      }
+
     </code>
   </pre>,
+  "
+",
   <p>
     will never be wrong. In addition, we can pass extra more informations say
   </p>,
+  "
+",
   <pre>
     <code
       className="language-ts"
     >
-      type R = {x: numebr, y: string, z: boolean}
+      <span
+        className="hljs-keyword"
+      >
+        type
+      </span>
+       R = {x: numebr, y: 
+      <span
+        className="hljs-built_in"
+      >
+        string
+      </span>
+      , z: 
+      <span
+        className="hljs-built_in"
+      >
+        boolean
+      </span>
+      }
+
     </code>
   </pre>,
+  "
+",
   <p>
     Since the extra property 
     <code>
@@ -188,26 +349,123 @@ Array [
     </code>
      which would think extra properties are bugs (when mix with optional type, TypeScript pretends it's a typo as they describes in document). TypeScript suggests two work arounds for this:
   </p>,
+  "
+",
   <pre>
     <code
       className="language-ts"
     >
-      foo({x: 1, y: '', z: true}) // error due to excess property check
-// 1. Use string index signature to indicate there may be extra properties
-interface ParameterType {
-    y?: string;
-    x?: number;
-    [propName: string]: any;
+      foo({x: 
+      <span
+        className="hljs-number"
+      >
+        1
+      </span>
+      , y: 
+      <span
+        className="hljs-string"
+      >
+        ''
+      </span>
+      , z: 
+      <span
+        className="hljs-literal"
+      >
+        true
+      </span>
+      }) 
+      <span
+        className="hljs-comment"
+      >
+        // error due to excess property check
+      </span>
+      
+
+      <span
+        className="hljs-comment"
+      >
+        // 1. Use string index signature to indicate there may be extra properties
+      </span>
+      
+
+      <span
+        className="hljs-keyword"
+      >
+        interface
+      </span>
+       ParameterType {
+    y?: 
+      <span
+        className="hljs-built_in"
+      >
+        string
+      </span>
+      ;
+    x?: 
+      <span
+        className="hljs-built_in"
+      >
+        number
+      </span>
+      ;
+    [propName: 
+      <span
+        className="hljs-built_in"
+      >
+        string
+      </span>
+      ]: 
+      <span
+        className="hljs-built_in"
+      >
+        any
+      </span>
+      ;
 }
 
-// 2. Assign the object to another variable
-const otherObj = { x: 1, y: '', z: true }
+
+      <span
+        className="hljs-comment"
+      >
+        // 2. Assign the object to another variable
+      </span>
+      
+
+      <span
+        className="hljs-keyword"
+      >
+        const
+      </span>
+       otherObj = { x: 
+      <span
+        className="hljs-number"
+      >
+        1
+      </span>
+      , y: 
+      <span
+        className="hljs-string"
+      >
+        ''
+      </span>
+      , z: 
+      <span
+        className="hljs-literal"
+      >
+        true
+      </span>
+       }
 foo(otherObj)
+
     </code>
   </pre>,
+  "
+",
   <h2>
     Depth subtyping
   </h2>,
+  "
+",
   <p>
     The 
     <code>
@@ -235,25 +493,124 @@ foo(otherObj)
     </code>
     . Consider situation like this:
   </p>,
+  "
+",
   <pre>
     <code
       className="language-ts"
     >
-      function bar(o: { nested: { x: number, y: string }, r: boolean }) {
-  o.nested = { x: 1, y: 'y' }
+      <span
+        className="hljs-function"
+      >
+        <span
+          className="hljs-keyword"
+        >
+          function
+        </span>
+         
+        <span
+          className="hljs-title"
+        >
+          bar
+        </span>
+        (
+        <span
+          className="hljs-params"
+        >
+          o: { nested: { x: 
+          <span
+            className="hljs-built_in"
+          >
+            number
+          </span>
+          , y: 
+          <span
+            className="hljs-built_in"
+          >
+            string
+          </span>
+           }, r: 
+          <span
+            className="hljs-built_in"
+          >
+            boolean
+          </span>
+           }
+        </span>
+        ) 
+      </span>
+      {
+  o.nested = { x: 
+      <span
+        className="hljs-number"
+      >
+        1
+      </span>
+      , y: 
+      <span
+        className="hljs-string"
+      >
+        'y'
+      </span>
+       }
 }
-const obj = {
+
+      <span
+        className="hljs-keyword"
+      >
+        const
+      </span>
+       obj = {
   nested: {
-    x: 1,
-    y: 'y',
-    z: 'x'
+    x: 
+      <span
+        className="hljs-number"
+      >
+        1
+      </span>
+      ,
+    y: 
+      <span
+        className="hljs-string"
+      >
+        'y'
+      </span>
+      ,
+    z: 
+      <span
+        className="hljs-string"
+      >
+        'x'
+      </span>
+      
   },
-  r: true
+  r: 
+      <span
+        className="hljs-literal"
+      >
+        true
+      </span>
+      
 }
 bar(obj)
-const _ = obj.nested.z // break the type system
+
+      <span
+        className="hljs-keyword"
+      >
+        const
+      </span>
+       _ = obj.nested.z 
+      <span
+        className="hljs-comment"
+      >
+        // break the type system
+      </span>
+      
+
     </code>
   </pre>,
+  "
+",
   <p>
     If a type system sees 
     <code>
@@ -269,6 +626,8 @@ const _ = obj.nested.z // break the type system
     </code>
      along with mutation.
   </p>,
+  "
+",
   <p>
     Note: if the record field is immuatable, then the 
     <code>
@@ -276,9 +635,13 @@ const _ = obj.nested.z // break the type system
     </code>
      is sound. So this is yet another example of how not mutation makes programming easy.
   </p>,
+  "
+",
   <h2>
     Subtyping of Array
   </h2>,
+  "
+",
   <p>
     Array's subtyping relation matches the depth subtyping rule. For TypeScript, Arrays are covariance, which means 
     <code>
@@ -294,9 +657,13 @@ const _ = obj.nested.z // break the type system
     </code>
      and reject the mutation. This kind of runtime check doesn't hold for TypeScript since type informations are erased in runtime.
   </p>,
+  "
+",
   <h2>
     Subtyping of function
   </h2>,
+  "
+",
   <p>
     To determine if a function 
     <code>
@@ -308,7 +675,11 @@ const _ = obj.nested.z // break the type system
     </code>
     , there are two rules should hold:
   </p>,
+  "
+",
   <ol>
+    
+
     <li>
       Function's parameter types are 
       <strong>
@@ -323,6 +694,8 @@ const _ = obj.nested.z // break the type system
         B =&gt; R &lt;: A =&gt; R
       </code>
     </li>
+    
+
     <li>
       Function's return types are 
       <strong>
@@ -337,7 +710,11 @@ const _ = obj.nested.z // break the type system
         P =&gt; A &lt;: P =&gt; B
       </code>
     </li>
+    
+
   </ol>,
+  "
+",
   <p>
     In general, if 
     <code>
@@ -349,20 +726,34 @@ const _ = obj.nested.z // break the type system
     </code>
     . For TypeScript, this rule holds for function, but does not for class method.
   </p>,
+  "
+",
   <h2>
     Bounded Polymorphism
   </h2>,
+  "
+",
   <p>
     Since subtyping is also one kind polymorphism, for a language just has either generic or subtyping, one may consider use either alternatively. However it may be considered a bad decision.
   </p>,
+  "
+",
   <ol>
+    
+
     <li>
       Use subtyping instead of generic would need extra type casting which is dangerous.
     </li>
+    
+
     <li>
       Use generic instead of subtyping would be at a cost of significantly less code reuse.
     </li>
+    
+
   </ol>,
+  "
+",
   <p>
     So for a modern OOP language, it is commonly suppling both, that is 
     <code>
@@ -386,15 +777,33 @@ const _ = obj.nested.z // break the type system
     </strong>
     , written as:
   </p>,
+  "
+",
   <pre>
     <code
       className="language-ts"
     >
-      type A&lt;T extends R&gt; = ...
+      <span
+        className="hljs-keyword"
+      >
+        type
+      </span>
+       A&lt;T 
+      <span
+        className="hljs-keyword"
+      >
+        extends
+      </span>
+       R&gt; = ...
+
     </code>
   </pre>,
+  "
+",
   <p>
     This feature give a type more restriction than just generic and more expressiveness and code reuse than just subtyping.
   </p>,
+  "
+",
 ]
 `;

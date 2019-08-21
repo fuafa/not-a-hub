@@ -8,7 +8,7 @@ import Posts from '../out/PostList.json';
 test('wtf', () => {
   const component = renderer.create(
     <MemoryRouter initialEntries={['/post/SubTyping']}>
-      <App {...Posts[8]}></App>
+      <App {...Posts[8]} _color='red'></App>
     </MemoryRouter>
   );
   let tree = component.toJSON();

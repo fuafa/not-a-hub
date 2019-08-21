@@ -25,7 +25,7 @@ exports[`should render all posts 1`] = `
             }
           >
             <a
-              href="/post/BuildinType"
+              href="/post/buildin-type"
               onClick={[Function]}
             >
               TypeScript built-in types
@@ -44,6 +44,11 @@ exports[`should render all posts 1`] = `
           </div>
           <div
             className="post-info-wrapper"
+            style={
+              Object {
+                "fontStyle": "italic",
+              }
+            }
           >
             <span
               className="post-info"
@@ -68,32 +73,34 @@ exports[`should render all posts 1`] = `
               href="/tag/复读机"
               onClick={[Function]}
             >
-              <div
+              <span
                 className="ant-tag ant-tag-blue"
                 style={
                   Object {
                     "backgroundColor": undefined,
+                    "cursor": "pointer",
                   }
                 }
               >
                 复读机
-              </div>
+              </span>
             </a>
             <a
               className="tag"
-              href="/tag/TypeScript"
+              href="/tag/typescript"
               onClick={[Function]}
             >
-              <div
+              <span
                 className="ant-tag ant-tag-blue"
                 style={
                   Object {
                     "backgroundColor": undefined,
+                    "cursor": "pointer",
                   }
                 }
               >
                 TypeScript
-              </div>
+              </span>
             </a>
           </div>
         </div>
@@ -103,6 +110,7 @@ exports[`should render all posts 1`] = `
       </div>
       <div
         className="ant-divider ant-divider-horizontal"
+        role="separator"
       />
     </li>
     <li>
@@ -122,7 +130,7 @@ exports[`should render all posts 1`] = `
             }
           >
             <a
-              href="/post/IntersectionPrimitive"
+              href="/post/intersection-primitive"
               onClick={[Function]}
             >
               Intersection of Primitive types
@@ -141,6 +149,11 @@ exports[`should render all posts 1`] = `
           </div>
           <div
             className="post-info-wrapper"
+            style={
+              Object {
+                "fontStyle": "italic",
+              }
+            }
           >
             <span
               className="post-info"
@@ -162,19 +175,20 @@ exports[`should render all posts 1`] = `
             </span>
             <a
               className="tag"
-              href="/tag/TypeScript"
+              href="/tag/typescript"
               onClick={[Function]}
             >
-              <div
+              <span
                 className="ant-tag ant-tag-blue"
                 style={
                   Object {
                     "backgroundColor": undefined,
+                    "cursor": "pointer",
                   }
                 }
               >
                 TypeScript
-              </div>
+              </span>
             </a>
           </div>
         </div>
@@ -184,6 +198,7 @@ exports[`should render all posts 1`] = `
       </div>
       <div
         className="ant-divider ant-divider-horizontal"
+        role="separator"
       />
     </li>
     <li>
@@ -203,7 +218,7 @@ exports[`should render all posts 1`] = `
             }
           >
             <a
-              href="/post/Subtyping"
+              href="/post/subtyping"
               onClick={[Function]}
             >
               A very basic understanding of subtyping
@@ -222,6 +237,11 @@ exports[`should render all posts 1`] = `
           </div>
           <div
             className="post-info-wrapper"
+            style={
+              Object {
+                "fontStyle": "italic",
+              }
+            }
           >
             <span
               className="post-info"
@@ -243,35 +263,37 @@ exports[`should render all posts 1`] = `
             </span>
             <a
               className="tag"
-              href="/tag/Typing"
+              href="/tag/typing"
               onClick={[Function]}
             >
-              <div
+              <span
                 className="ant-tag ant-tag-blue"
                 style={
                   Object {
                     "backgroundColor": undefined,
+                    "cursor": "pointer",
                   }
                 }
               >
                 Typing
-              </div>
+              </span>
             </a>
             <a
               className="tag"
-              href="/tag/TypeScript"
+              href="/tag/typescript"
               onClick={[Function]}
             >
-              <div
+              <span
                 className="ant-tag ant-tag-blue"
                 style={
                   Object {
                     "backgroundColor": undefined,
+                    "cursor": "pointer",
                   }
                 }
               >
                 TypeScript
-              </div>
+              </span>
             </a>
           </div>
         </div>
@@ -281,6 +303,7 @@ exports[`should render all posts 1`] = `
       </div>
       <div
         className="ant-divider ant-divider-horizontal"
+        role="separator"
       />
     </li>
     <li>
@@ -300,7 +323,7 @@ exports[`should render all posts 1`] = `
             }
           >
             <a
-              href="/post/ThisType"
+              href="/post/this-type"
               onClick={[Function]}
             >
               [坑] ThisType of TypeScript
@@ -319,6 +342,11 @@ exports[`should render all posts 1`] = `
           </div>
           <div
             className="post-info-wrapper"
+            style={
+              Object {
+                "fontStyle": "italic",
+              }
+            }
           >
             <span
               className="post-info"
@@ -340,35 +368,37 @@ exports[`should render all posts 1`] = `
             </span>
             <a
               className="tag"
-              href="/tag/TypeScript"
+              href="/tag/typescript"
               onClick={[Function]}
             >
-              <div
+              <span
                 className="ant-tag ant-tag-blue"
                 style={
                   Object {
                     "backgroundColor": undefined,
+                    "cursor": "pointer",
                   }
                 }
               >
                 TypeScript
-              </div>
+              </span>
             </a>
             <a
               className="tag"
               href="/tag/复读机"
               onClick={[Function]}
             >
-              <div
+              <span
                 className="ant-tag ant-tag-blue"
                 style={
                   Object {
                     "backgroundColor": undefined,
+                    "cursor": "pointer",
                   }
                 }
               >
                 复读机
-              </div>
+              </span>
             </a>
           </div>
         </div>
@@ -378,6 +408,7 @@ exports[`should render all posts 1`] = `
       </div>
       <div
         className="ant-divider ant-divider-horizontal"
+        role="separator"
       />
     </li>
     <li>
@@ -397,7 +428,7 @@ exports[`should render all posts 1`] = `
             }
           >
             <a
-              href="/post/TypeGuard"
+              href="/post/type-guard"
               onClick={[Function]}
             >
               [坑] any, never, unknown in TypeScript
@@ -416,6 +447,11 @@ exports[`should render all posts 1`] = `
           </div>
           <div
             className="post-info-wrapper"
+            style={
+              Object {
+                "fontStyle": "italic",
+              }
+            }
           >
             <span
               className="post-info"
@@ -437,19 +473,20 @@ exports[`should render all posts 1`] = `
             </span>
             <a
               className="tag"
-              href="/tag/TypeScript"
+              href="/tag/typescript"
               onClick={[Function]}
             >
-              <div
+              <span
                 className="ant-tag ant-tag-blue"
                 style={
                   Object {
                     "backgroundColor": undefined,
+                    "cursor": "pointer",
                   }
                 }
               >
                 TypeScript
-              </div>
+              </span>
             </a>
           </div>
         </div>
@@ -459,11 +496,12 @@ exports[`should render all posts 1`] = `
       </div>
       <div
         className="ant-divider ant-divider-horizontal"
+        role="separator"
       />
     </li>
   </ul>
   <ul
-    className="ant-pagination "
+    className="ant-pagination"
     style={Object {}}
     unselectable="unselectable"
   >
@@ -487,6 +525,7 @@ exports[`should render all posts 1`] = `
             className=""
             data-icon="left"
             fill="currentColor"
+            focusable="false"
             height="1em"
             viewBox="64 64 896 896"
             width="1em"
@@ -540,6 +579,7 @@ exports[`should render all posts 1`] = `
             className=""
             data-icon="right"
             fill="currentColor"
+            focusable="false"
             height="1em"
             viewBox="64 64 896 896"
             width="1em"

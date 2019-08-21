@@ -9,7 +9,7 @@ test('should render all posts', () => {
     <MemoryRouter initialEntries={['/']}>
       <App
         posts={[...Posts]}
-        color={'blue'}
+        _color={'blue'}
         match={{
           isExact: true,
           params: {},
