@@ -45,6 +45,12 @@
     "deploy": "gh-pages -d build",
     "gen-json": "node task/post.js"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "CI=true yarn test",
+      "pre-push": "CI=true yarn test"
+    }
+  },
   "eslintConfig": {
     "extends": "react-app"
   },
@@ -68,6 +74,7 @@
     "customize-cra": "^0.2.12",
     "enzyme": "^3.10.0",
     "gh-pages": "^2.0.1",
+    "husky": "^3.0.4",
     "nodemon": "^1.18.10",
     "prettier": "^1.15.2",
     "react-app-rewired": "^2.1.3",
