@@ -3,9 +3,10 @@ import 'highlight.js/styles/atom-one-light.css';
 import './Post.css';
 import { Link } from 'react-router-dom';
 import html2React from 'html-react-parser';
-import { Tag, Divider } from 'antd';
+import { Divider } from 'antd';
 import ProgressBar from './components/ProgressBar';
-import { COLORS } from './shared/constant';
+import LinkTag from './components/LinkTag';
+import { ColorProp } from './shared/types';
 
 export interface PostProps {
   content: string;
@@ -19,8 +20,7 @@ export interface PostProps {
   cover?: string;
 }
 
-
-const Post: React.SFC<PostProps> = props => {
+const Post: React.SFC<PostProps & ColorProp> = props => {
   return (
     <>
       <ProgressBar />
@@ -36,15 +36,8 @@ const Post: React.SFC<PostProps> = props => {
         <span>|</span>
         <span>{props.date}</span>
         <span>|</span>
-        {props.tags.map(tag => (
-          <Link
-            to={`/tag/${tag.toLowerCase()}`}
-            className="mata-link"
-            key={tag}
-          >
-            {/* #{tag} */}
-            <Tag color={COLORS[Math.floor(Math.random() * COLORS.length)]} style={{cursor: 'pointer'}}>{tag}</Tag>
-          </Link>
+       {props.tags.map(tag => (
+          <LinkTag key={tag} tag={tag} className='meta-link' color={props._color}/>
         ))}
       </div>
       <p style={{

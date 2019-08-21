@@ -11,3 +11,5 @@ export const COLORS = [
   'geekblue',
   'purple'
 ] as const;
+
+export const URL_PR = 'https://api.github.com/search/issues?q=author:fuafa+type:pr';

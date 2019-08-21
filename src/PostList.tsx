@@ -1,17 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { Link, RouteComponentProps } from 'react-router-dom';
 import { Tag, Typography, Divider, Pagination } from 'antd';
-// import usePager from './hooks/usePager';
-// import usePrevious from './hooks/usePrevious';
 import { PostProps } from './Post';
+import LinkTag from './components/LinkTag'
 import './PostList.css';
 import { camel2dash } from './utils/utils';
 import { COLORS } from './shared/constant';
+import { ColorProp } from './shared/types';
 
 export interface PostListProp {
   posts: PostProps[];
-  // 测试用
-  color?: typeof COLORS[number]
 };
 type ListType = 'all' | 'hidden' | 'todo' | 'completed';
 type PostsRouterParam = {
@@ -23,7 +21,7 @@ type PostsRouterParam = {
 const PER_PAGE = 5;
 const { Title, Paragraph } = Typography;
 
-const PostList: React.SFC<RouteComponentProps<PostsRouterParam> & PostListProp> = props => {
+const PostList: React.SFC<RouteComponentProps<PostsRouterParam> & PostListProp & ColorProp> = props => {
   let posts;
   const [listType] = useState<ListType>('all');
   const tag = props.match.params.tag;
@@ -71,7 +69,7 @@ const PostList: React.SFC<RouteComponentProps<PostsRouterParam> & PostListProp> 
     <Typography>
       <h2 className="tag-title">
         {tag && (
-          <Tag color={props.color || COLORS[Math.floor(Math.random() * COLORS.length)]}>
+          <Tag color={props._color || COLORS[Math.floor(Math.random() * COLORS.length)]}>
             #{tag}
           </Tag>
         )}
@@ -94,21 +92,7 @@ const PostList: React.SFC<RouteComponentProps<PostsRouterParam> & PostListProp> 
                   </span>
                   <span className="post-info">|</span>
                   {post.tags.map(tag => (
-                    <Link
-                      key={tag}
-                      to={`/tag/${tag.toLowerCase()}`}
-                      className="tag"
-                      // onClick={() => setPage(1)}
-                    >
-                      <Tag
-                        color={
-                          props.color || COLORS[Math.floor(Math.random() * COLORS.length)]
-                        }
-                        style={{ cursor: 'pointer' }}
-                      >
-                        {tag}
-                      </Tag>
-                    </Link>
+                    <LinkTag key={tag} tag={tag} className='tag' color={props._color} />
                   ))}
                 </div>
               </div>
