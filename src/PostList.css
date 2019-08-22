@@ -5,14 +5,14 @@ ul li {
   margin: 21px 0;
   padding: 0 55px;
 }
-.post {
+/* .post {
   display: flex;
   justify-content: space-between;
 }
 .post-text-wrapper {
   display: flex;
   flex-direction: column;
-}
+} */
 
 .tag-title {
   font-style: italic;
