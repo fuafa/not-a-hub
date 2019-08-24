@@ -3,8 +3,9 @@ import React from 'react';
 /**
  * 这个好像是猫？
  */
-const Logo = () => (
+const Logo = (porps: {className: string}) => (
   <svg
+    className={porps.className}
     aria-hidden="true"
     data-prefix="fas"
     data-icon="cat"
