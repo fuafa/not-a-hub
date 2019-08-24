@@ -9,10 +9,7 @@ import { Icon, Layout } from 'antd';
 import Logo from './Logo';
 import './App.css';
 
-import LoadableFAQ from './LoadableFAQ';
 import PostLayout from './PostLayout';
-// import Post from './Post';
-import { WaitingComponent } from './utils/utils';
 import Posts from './out/PostList.json';
 
 const { Header, Footer, Content } = Layout;
@@ -25,8 +22,6 @@ Posts.sort((a, b) => {
   }
 });
 
-const LazyTutor = React.lazy(() => import('./Tutor'));
-
 class App extends Component {
   render() {
     return (
@@ -37,10 +32,8 @@ class App extends Component {
                 maxWidth: '660px',
                 margin: '20px auto',
                 display: 'flex',
-                // justifyContent: 'space-between',
                 justifyContent: 'flex-end',
                 alignItems: 'center',
-                // flexDirection: 'row-reverse',
             }}>
               <div className="App-header-item-container" style={{
                 justifySelf: 'flex-start',
@@ -59,8 +52,6 @@ class App extends Component {
                 <PostLayout {...props} posts={Posts} />
               )}
             />
-            <Route path="/tutor" component={WaitingComponent(LazyTutor)} />
-            <Route path="/faq" component={LoadableFAQ} />
           </Content>
           <Footer>
             <div className="footer-inner">
