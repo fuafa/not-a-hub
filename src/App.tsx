@@ -6,10 +6,11 @@ import {
 } from 'react-router-dom';
 import { Icon, Layout } from 'antd';
 
-import Logo from './Logo';
+import Logo from './components/IconLogo';
 import './App.css';
 
 import PostLayout from './PostLayout';
+import Contribution from './Contribution';
 import Posts from './out/PostList.json';
 
 const { Header, Footer, Content } = Layout;
@@ -39,9 +40,10 @@ class App extends Component {
                 justifySelf: 'flex-start',
                 marginRight: 'auto',
               }}><Link to="/" className="App-header-item">
-                <Icon component={Logo} className="App-logo" />
+                {/* <Icon component={Logo} className="App-logo" /> */}
+                <Logo className="App-logo"></Logo>
               </Link></div>
-              <div className="App-header-item-container"><Link to="/" className="App-header-item">我的 PR 不可能被 Approved</Link></div>
+              <div className="App-header-item-container"><Link to="/contribution" className="App-header-item">我的 PR 不可能被 Approved</Link></div>
               {/* <div className="App-header-item-container"><Link to="/" className="App-header-item">Demo Oriented</Link></div> */}
           </div>
           </Header>
@@ -50,6 +52,12 @@ class App extends Component {
               path="/"
               render={props => (
                 <PostLayout {...props} posts={Posts} />
+              )}
+            />
+            <Route
+              path="/contribution"
+              render={props => (
+                <Contribution {...props}></Contribution>                
               )}
             />
           </Content>
