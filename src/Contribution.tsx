@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import ContributionItem from './ContributionItem';
 import { RouteComponentProps } from 'react-router-dom';
 import { Radio, Icon, message } from 'antd';
@@ -20,9 +20,64 @@ const Contribution: React.SFC<RouteComponentProps> = () => {
   const [type, setType] = useState<FeedType>('all');
   const [loading, setLoading] = useState(true);
 
+
+  const [loadingMore, setLoadingMore] = useState(false);
+  const count = data ? data.items.length : 0;
+  const page = count / 30 + 1;
+  const hasRest = data ? data.total_count - count > 0 : true;
+
+  /**
+   * Used by bind scroll useEffect
+   * TODO: 根据类型选择加载哪些内容
+   */
+  const getMoreData = useCallback(async (q: string) => {
+    if (loadingMore) {
+      return;
+    }
+    setLoadingMore(true);
+    const feeds: Octokit.Response<IssuesAndPRsMata> = await octokit.search.issuesAndPullRequests({
+      q,
+      page
+    });
+    const items = [...data!.items, ...feeds.data.items.sort((a, b) => a.updated_at > b.updated_at ? -1 : 0)];
+    setData({
+      ...feeds.data,
+      items
+    });
+    setLoadingMore(false);
+  }, [data, page, loadingMore]);
+
+  /**
+   * Bind scroll
+   */
   useEffect(() => {
-    async function setFeeds(type: FeedType) {
+    function onScroll() {
+      if (document.documentElement.scrollHeight <= window.scrollY + document.body.clientHeight && hasRest) {
+        console.log('fetch more');
+        let is = type === 'all' ? '' : `+is${type}`;
+        let q = `author:fuafa${is}`;
+        getMoreData(q)
+          .then(() => {
+            setLoadingMore(false);
+          })
+          .catch((err: FeedError) => {
+            message.error(err.message);
+            setLoadingMore(false);
+          });
+      }
+    }
+    window.addEventListener('scroll', onScroll);
+
+    return () => window.removeEventListener('scroll', onScroll);
+  }, [getMoreData, type, hasRest]);
+
+  /**
+   * Fetch data when init and taggol type.
+   */
+  useEffect(() => {
+    async function setFeeds() {
       let q = 'author:fuafa+-user:fuafa';
+      // let q = 'author:fuafa';
 
       if(type !== 'all') {
         q += `+is:${type}`;
@@ -87,7 +142,7 @@ const Contribution: React.SFC<RouteComponentProps> = () => {
     }
 
 
-    setFeeds(type)
+    setFeeds()
       .then(() => {
         setLoading(false);
       })
@@ -128,6 +183,7 @@ const Contribution: React.SFC<RouteComponentProps> = () => {
               <Icon type='loading' spin></Icon>
           </div>
         }
+        {loadingMore && <li style={{ textAlign: 'center' }}><Icon type='loading' spin></Icon></li>}
       </ul>
     </>
   );
