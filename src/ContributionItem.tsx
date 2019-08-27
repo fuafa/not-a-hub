@@ -1,12 +1,17 @@
 import React from 'react';
+import { Tooltip } from 'antd';
 import IconIssue from './components/IconIssue';
 import IconPR from './components/IconPR';
+import IcondMerge from './components/IconPRMerged';
+import IconComments from './components/IconComments';
 import { IssueOrPRProps } from './shared/types';
 import './ContributionItem.css'
 
 const ContributionItem: React.SFC<IssueOrPRProps> = (props) => {
-  const isIssue = !!props.pull_request;
+  const isIssue = !props.pull_request;
   const className = props.state === 'open' ? 'state-green' : 'state-red';
+  const isMerged = props.state === 'merged';
+  const tooltipAvatar = `${props.user.login} ${props.assignee ? props.assignee.login : ''}`;
   
   return (
     <li style={{
@@ -18,7 +23,7 @@ const ContributionItem: React.SFC<IssueOrPRProps> = (props) => {
         width: '20px',
         lineHeight: '2'
       }}>
-        {isIssue ? <IconIssue className={className}></IconIssue> : <IconPR className={className}></IconPR>}
+        {isIssue ? <IconIssue className={className}></IconIssue> : isMerged ? <IcondMerge /> : <IconPR className={className}></IconPR>}
       </div>
       <div style={{
         display: 'flex',
@@ -33,16 +38,42 @@ const ContributionItem: React.SFC<IssueOrPRProps> = (props) => {
 
           <div style={{
             fontWeight: 600,
-          }}>{props.title}</div>
+          }}>
+            <a href={props.html_url} target='_blank' rel="noopener noreferrer">{props.title}</a>
+          </div>
           {/* TODO: Tags here */}
           <div style={{
             marginRight: 'auto',
-          }}></div>
-          <div>
-            <img src={props.user.avatar_url} alt="avatar" style={{
-              width: '20px',
-              height: '20px'
-            }} />
+            marginLeft: '15px'
+          }}>
+            {props.labels.map(label => (
+              <span
+                key={label.name}
+                style={{
+                  backgroundColor: `#${label.color}`,
+                  color: '#fff',
+                  marginLeft: '5px',
+                  padding: '2px 4px',
+                  fontSize: '12px',
+                  fontWeight: 600,
+                  borderRadius: '2px',
+                }}
+              >{label.name}</span>
+            ))}
+          </div>
+          <div style={{ marginLeft: '40px' }}>
+            <Tooltip placement='bottom' title={tooltipAvatar} mouseEnterDelay={1}>
+              <img src={props.user.avatar_url} alt="avatar" className='avatar' />
+              {props.assignee && <img src={props.assignee.avatar_url} alt="avatar" className='avatar' />}
+            </Tooltip>
+          </div>
+          <div style={{
+            display: 'flex',
+            alignItems: 'flex-end',
+            marginLeft: '15px'
+          }}>
+            <IconComments></IconComments>
+            <span style={{ marginLeft: '5px', fontSize: '12px' }}>{props.comments}</span>
           </div>
         </div>
         <div className="bottom" style={{
@@ -55,7 +86,7 @@ const ContributionItem: React.SFC<IssueOrPRProps> = (props) => {
             margin: '0 5px'
           }}>·</div>
           <div>
-            {isIssue ? `You opened this issue at ${props.created_at}` : `Your pull request xxx`}
+            {isIssue ? `You issue updated at ${new Date(props.updated_at).toDateString()}` : `Your pull request updated at ${new Date(props.updated_at).toDateString()}`}
           </div>
         </div>
       </div>

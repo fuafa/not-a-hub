@@ -1,4 +1,5 @@
 import { COLORS } from './constant';
+import { string } from 'prop-types';
 
 /**
  * Only use for snapshot test
@@ -43,11 +44,34 @@ const FakeFeeds = {
         "site_admin": false
       },
       "labels": [
-
+        {
+          name: '',
+          color: '',
+          default: true
+        }
       ],
       "state": "closed",
       "locked": false,
-      "assignee": null,
+      assignee: {
+        avatar_url: "https://avatars2.githubusercontent.com/u/8052792?v=4",
+        events_url: "https://api.github.com/users/sheetalkamat/events{/privacy}",
+        followers_url: "https://api.github.com/users/sheetalkamat/followers",
+        following_url: "https://api.github.com/users/sheetalkamat/following{/other_user}",
+        gists_url: "https://api.github.com/users/sheetalkamat/gists{/gist_id}",
+        gravatar_id: "",
+        html_url: "https://github.com/sheetalkamat",
+        id: 8052792,
+        login: "sheetalkamat",
+        node_id: "MDQ6VXNlcjgwNTI3OTI=",
+        organizations_url: "https://api.github.com/users/sheetalkamat/orgs",
+        received_events_url: "https://api.github.com/users/sheetalkamat/received_events",
+        repos_url: "https://api.github.com/users/sheetalkamat/repos",
+        site_admin: false,
+        starred_url: "https://api.github.com/users/sheetalkamat/starred{/owner}{/repo}",
+        subscriptions_url: "https://api.github.com/users/sheetalkamat/subscriptions",
+        type: "User",
+        url: "https://api.github.com/users/sheetalkamat",
+      },
       "assignees": [
 
       ],

@@ -4,3 +4,14 @@
 .state-red {
   fill: #cb2431;
 }
+.avatar {
+  width: 20px;
+  height: 20px;
+  margin-left: -10px;
+  transition: margin-left 0.1s;
+}
+
+.avatar:hover {
+  margin-left: 3px;
+  transition: margin-left 0.1s;
+}

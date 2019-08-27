@@ -12,6 +12,7 @@
 }
 .App-header-item {
   color: #ffadd2;
+  font-weight: bold;
 }
 .App-header-item:hover {
   color: #eb2f96;

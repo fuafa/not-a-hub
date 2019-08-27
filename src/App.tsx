@@ -57,7 +57,7 @@ class App extends Component {
             <Route
               path="/contribution"
               render={props => (
-                <Contribution {...props}></Contribution>                
+                <Contribution {...props}></Contribution>
               )}
             />
           </Content>
