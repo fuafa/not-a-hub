@@ -4,6 +4,16 @@ import { Icon } from 'antd';
 import PostList, { PostListProp } from './PostList';
 import { camel2dash } from './utils/utils'
 
+import { connect } from 'react-redux';
+
+import { iRootState, Dispatch } from './store';
+
+const mapState = (state: iRootState) => ({
+  posts: state.posts
+});
+
+type Props = ReturnType<typeof mapState>;
+
 type RouterParams = {
   post_title: string
 }
@@ -47,44 +57,4 @@ const PostLayout: React.SFC<RouteComponentProps<RouterParams> & PostListProp> = 
   );
 }
 
-export default PostLayout;
-
-// export default class PostLayout extends React.Component<
-//   RouteComponentProps<RouterParams> & PostListProp
-// > {
-//   render() {
-//     return (
-//       <>
-//         <Route
-//           path={[this.props.match.path, `${this.props.match.path}tag/:tag`]}
-//           exact
-//           render={props => (
-//             <PostList
-//               {...props}
-//               posts={this.props.posts}
-//             />
-//           )}
-//         />
-//         <Route
-//           path={`/post/:post_title`}
-//           render={props => (
-//             <Suspense
-//               fallback={
-//                 <>
-//                   <Icon type="loading" style={{fontSize: '50px'}}></Icon>
-//                 </>
-//               }
-//             >
-//               <Post
-//                 {...props}
-//                 {...this.props.posts.find(
-//                   ({ url }) => url === props.match.params.post_title
-//                 )!}
-//               />
-//             </Suspense>
-//           )}
-//         />
-//       </>
-//     );
-//   }
-// }
+export default connect(mapState)(PostLayout);

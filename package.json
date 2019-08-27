@@ -3,8 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@ant-design/icons": "^2.1.1",
-    "@ant-design/icons-svg": "^4.0.0-alpha.0",
     "@octokit/rest": "^16.28.7",
     "@rematch/core": "^1.1.0",
     "@types/jest": "23.3.9",

@@ -1,7 +1,7 @@
 import React from 'react';
 import IconIssue from './components/IconIssue';
 import IconPR from './components/IconPR';
-import { IssueOrPRProps } from './Contribution';
+import { IssueOrPRProps } from './models/issueAndPR';
 import './ContributionItem.css'
 
 const ContributionItem: React.SFC<IssueOrPRProps> = (props) => {

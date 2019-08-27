@@ -5,23 +5,22 @@ import {
   Route
 } from 'react-router-dom';
 import { Icon, Layout } from 'antd';
-
 import Logo from './components/IconLogo';
 import './App.css';
 
 import PostLayout from './PostLayout';
 import Contribution from './Contribution';
-import Posts from './out/PostList.json';
+// import Posts from './out/PostList.json';
 
 const { Header, Footer, Content } = Layout;
 
-Posts.sort((a, b) => {
-  if (a.date > b.date) {
-    return -1;
-  } else {
-    return 0;
-  }
-});
+// Posts.sort((a, b) => {
+//   if (a.date > b.date) {
+//     return -1;
+//   } else {
+//     return 0;
+//   }
+// });
 
 class App extends Component {
   render() {
@@ -51,7 +50,7 @@ class App extends Component {
            <Route
               path="/"
               render={props => (
-                <PostLayout {...props} posts={Posts} />
+                <PostLayout {...props}/>
               )}
             />
             <Route
@@ -93,4 +92,5 @@ class App extends Component {
   }
 }
 
+// export default connect(mapState)(App);
 export default App;

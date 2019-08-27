@@ -112,7 +112,6 @@ const PostList: React.SFC<RouteComponentProps<PostsRouterParam> & PostListProp &
         onChange={newPage => {
           setPage(newPage);
           props.history.push(`${tag ? `/tag/${tag}/` : '/'}${newPage && newPage !== 1 ? `page/${newPage}` : ''}`);
-          // window.history.pushState(null, '', `${tag ? `/tag/${tag}/` : '/'}${newPage && newPage !== 1 ? `page/${newPage}` : ''}`);
         }}
         total={total}
         pageSize={PER_PAGE}
