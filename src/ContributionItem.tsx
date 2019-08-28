@@ -63,8 +63,8 @@ const ContributionItem: React.SFC<IssueOrPRProps> = (props) => {
           </div>
           <div style={{ marginLeft: '40px' }}>
             <Tooltip placement='bottom' title={tooltipAvatar} mouseEnterDelay={1}>
-              <img src={props.user.avatar_url} alt="avatar" className='avatar' />
-              {props.assignee && <img src={props.assignee.avatar_url} alt="avatar" className='avatar' />}
+              <img src={props.user.avatar_url + '&s=40'} alt="avatar" className='avatar' />
+              {props.assignee && <img src={props.assignee.avatar_url + '&s=40'} alt="avatar" className='avatar' />}
             </Tooltip>
           </div>
           <div style={{

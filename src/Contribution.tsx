@@ -166,9 +166,12 @@ const Contribution: React.SFC<RouteComponentProps> = () => {
   return (
     <>
       <Radio.Group onChange={(e) => onChangeRadio(e.target.value)} defaultValue='all'>
-        <Radio.Button value='all'>all {loading ? LoadingCompoent(type === 'all') : ''}</Radio.Button>
+        {/* <Radio.Button value='all'>all {loading ? LoadingCompoent(type === 'all') : ''}</Radio.Button>
         <Radio.Button value='pr'>pr {loading ? LoadingCompoent(type === 'pr') : ''}</Radio.Button>
-        <Radio.Button value='issue'>issue {loading ? LoadingCompoent(type === 'issue') : ''}</Radio.Button>
+        <Radio.Button value='issue'>issue {loading ? LoadingCompoent(type === 'issue') : ''}</Radio.Button> */}
+        {['all', 'pr', 'issue'].map(value => 
+          <Radio.Button value={value}>{value} {loading ? LoadingCompoent(type === value) : ''}</Radio.Button>
+        )}
       </Radio.Group>
       <ul style={{
         border: '1px solid #ccc',
