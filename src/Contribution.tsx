@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useReducer, Reducer } from 'react';
 import ContributionItem from './ContributionItem';
 import { RouteComponentProps } from 'react-router-dom';
 import { Radio, Icon, message } from 'antd';
@@ -13,39 +13,110 @@ type FeedError = {
   message: string;
   documentation_url: string;
 };
+const PER_PAGE = 30;
+
+type ActionType =
+    'FETCH_FEEDS'
+  | 'FETCH_FAIL'
+  | 'FETCH_MORE_FEEDS'
+  | 'FETCH_MORE_FAIL'
+
+type ActionTypeWithPayLoad =
+    'FETCH_SUCCESS'
+  | 'FETCH_MORE_SUCCESS'
+
+type Action = {
+  kind: ActionType,
+} | {
+  kind: ActionTypeWithPayLoad,
+  payload: IssuesAndPRsMata
+}
+
+type State = {
+  loading: boolean,
+  loadingMore: boolean,
+  data?: IssuesAndPRsMata,
+}
+
+const reducer: Reducer<State, Action> = (preState, action) => {
+  switch (action.kind) {
+    case 'FETCH_FEEDS':
+      return {
+        ...preState,
+        loading: true,
+      };
+    case 'FETCH_SUCCESS':
+      return {
+        loading: false,
+        loadingMore: false,
+        data: action.payload
+      };
+    case 'FETCH_FAIL':
+      return {
+        ...preState,
+        loading: false,
+      };
+    case 'FETCH_MORE_FEEDS':
+      return {
+        ...preState,
+        loadingMore: true,
+      };
+    case 'FETCH_MORE_SUCCESS':
+      return {
+        loadingMore: false,
+        loading: false,
+        data: {
+          // FETCH_MORE means preState.data !== undefined, so use a ! is ok here.
+          total_count: preState.data!.total_count + action.payload.total_count,
+          items: [
+            ...preState.data!.items,
+            ...action.payload.items
+          ].sort((a, b) => a.updated_at > b.updated_at ? -1 : 0),
+          incomplete_results: action.payload.incomplete_results
+        },
+      };
+    case 'FETCH_MORE_FAIL':
+      return {
+        ...preState,
+        loadingMore: false,
+      };
+  };
+};
 
 const Contribution: React.SFC<RouteComponentProps> = () => {
-  const [data, setData] = useState<IssuesAndPRsMata | undefined>(undefined);
-  // TODO: Change to useReducer
+  const [state, dispatch] = useReducer(reducer, {
+    loading: true,
+    loadingMore: false,
+    data: undefined,
+  });
   const [type, setType] = useState<FeedType>('all');
-  const [loading, setLoading] = useState(true);
-
-
-  const [loadingMore, setLoadingMore] = useState(false);
-  const count = data ? data.items.length : 0;
-  const page = count / 30 + 1;
-  const hasRest = data ? data.total_count - count > 0 : true;
+  const count = state.data ? state.data.items.length : 0;
+  const page = count / PER_PAGE + 1;
+  const hasRest = state.data ? state.data.total_count - count > 0 : true;
 
   /**
    * Used by bind scroll useEffect
    * TODO: 根据类型选择加载哪些内容
    */
   const getMoreData = useCallback(async (q: string) => {
-    if (loadingMore) {
+    if (state.loadingMore) {
       return;
     }
-    setLoadingMore(true);
-    const feeds: Octokit.Response<IssuesAndPRsMata> = await octokit.search.issuesAndPullRequests({
-      q,
-      page
-    });
-    const items = [...data!.items, ...feeds.data.items.sort((a, b) => a.updated_at > b.updated_at ? -1 : 0)];
-    setData({
-      ...feeds.data,
-      items
-    });
-    setLoadingMore(false);
-  }, [data, page, loadingMore]);
+    dispatch({ kind: 'FETCH_MORE_FEEDS' });
+    try {
+      const feeds: Octokit.Response<IssuesAndPRsMata> = await octokit.search.issuesAndPullRequests({
+        q,
+        page
+      });
+      dispatch({
+        kind: 'FETCH_MORE_SUCCESS',
+        payload: feeds.data,
+      });
+    } catch (err) {
+      dispatch({ kind: 'FETCH_MORE_FAIL' });
+      message.error(err.message);
+    }
+  }, [state, page]);
 
   /**
    * Bind scroll
@@ -53,17 +124,9 @@ const Contribution: React.SFC<RouteComponentProps> = () => {
   useEffect(() => {
     function onScroll() {
       if (document.documentElement.scrollHeight <= window.scrollY + document.body.clientHeight && hasRest) {
-        console.log('fetch more');
         let is = type === 'all' ? '' : `+is${type}`;
         let q = `author:fuafa${is}`;
-        getMoreData(q)
-          .then(() => {
-            setLoadingMore(false);
-          })
-          .catch((err: FeedError) => {
-            message.error(err.message);
-            setLoadingMore(false);
-          });
+        getMoreData(q);
       }
     }
     window.addEventListener('scroll', onScroll);
@@ -124,12 +187,15 @@ const Contribution: React.SFC<RouteComponentProps> = () => {
             return 0;
           });
 
-          setData({
-            items,
-            total_count: merged.data.total_count + unMerged.data.total_count + issue.data.total_count,
-            incomplete_results: merged.data.incomplete_results && unMerged.data.incomplete_results && issue.data.incomplete_results,
+          dispatch({
+            kind: 'FETCH_SUCCESS',
+            payload: {
+              items,
+              total_count: merged.data.total_count + unMerged.data.total_count + issue.data.total_count,
+              incomplete_results: merged.data.incomplete_results && unMerged.data.incomplete_results && issue.data.incomplete_results,
+            }
           });
-        })
+        });
 
         return;
       }
@@ -138,16 +204,13 @@ const Contribution: React.SFC<RouteComponentProps> = () => {
         q
       });
 
-      setData(feeds.data);
+      dispatch({ kind: 'FETCH_SUCCESS', payload: feeds.data });
     }
 
 
     setFeeds()
-      .then(() => {
-        setLoading(false);
-      })
       .catch((err: FeedError) => {
-        setLoading(false);
+        dispatch({ kind: 'FETCH_FAIL' });
         if (err.documentation_url.endsWith('#rate-limiting')) {
           message.error('API rate limit exceeded');
           return;
@@ -159,18 +222,15 @@ const Contribution: React.SFC<RouteComponentProps> = () => {
   const LoadingCompoent = (x: boolean) => x && <Icon type="loading" spin></Icon>
 
   function onChangeRadio(value: FeedType) {
-    setLoading(true);
+    dispatch({ kind: 'FETCH_FEEDS' });
     setType(value);
   }
 
   return (
     <>
       <Radio.Group onChange={(e) => onChangeRadio(e.target.value)} defaultValue='all'>
-        {/* <Radio.Button value='all'>all {loading ? LoadingCompoent(type === 'all') : ''}</Radio.Button>
-        <Radio.Button value='pr'>pr {loading ? LoadingCompoent(type === 'pr') : ''}</Radio.Button>
-        <Radio.Button value='issue'>issue {loading ? LoadingCompoent(type === 'issue') : ''}</Radio.Button> */}
         {['all', 'pr', 'issue'].map(value => 
-          <Radio.Button value={value}>{value} {loading ? LoadingCompoent(type === value) : ''}</Radio.Button>
+          <Radio.Button value={value}>{value} {state.loading ? LoadingCompoent(type === value) : ''}</Radio.Button>
         )}
       </Radio.Group>
       <ul style={{
@@ -178,15 +238,15 @@ const Contribution: React.SFC<RouteComponentProps> = () => {
         padding: 0,
         width: '660px'
       }}>
-        {data
-          ? data.items.map(item => (
+        {state.data
+          ? state.data.items.map(item => (
               <ContributionItem {...item} key={item.url}></ContributionItem>
           ))
           : <div style={{ padding: '50px', textAlign: 'center', fontSize: '30px' }}>
               <Icon type='loading' spin></Icon>
           </div>
         }
-        {loadingMore && <li style={{ textAlign: 'center' }}><Icon type='loading' spin></Icon></li>}
+        {state.loadingMore && <li style={{ textAlign: 'center' }}><Icon type='loading' spin></Icon></li>}
       </ul>
     </>
   );
