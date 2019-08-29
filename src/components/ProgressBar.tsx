@@ -1,17 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useLayoutEffect } from 'react';
 
 const ProgressBar: React.SFC = () => {
-  const html = document.documentElement;
   const [used, setUsed] = useState(0);
 
-  // function onScroll() {
-  //   const scrollHeight = html.scrollHeight;
-  //   const scrollTop = html.scrollTop;
-  //   setUsed(scrollTop / (scrollHeight - window.innerHeight));
-  // }
-
-  useEffect(() => {
+  useLayoutEffect(() => {
     function onScroll() {
+      const html = document.documentElement;
       const scrollHeight = html.scrollHeight;
       const scrollTop = html.scrollTop;
       setUsed(scrollTop / (scrollHeight - window.innerHeight));
@@ -19,9 +13,6 @@ const ProgressBar: React.SFC = () => {
 
     window.addEventListener('scroll', onScroll);
     return () => window.removeEventListener('scroll', onScroll);
-    // React Hook useEffect has missing dependencies: 'html.scrollHeight' and 'html.scrollTop'.
-    // Either include them or remove the dependency array react-hooks/exhaustive-deps.
-    // TODO: How can I achieve only call `useEffect` in the init state and avioding the above warning in the same time?
   }, []);
 
   return (
