@@ -9,6 +9,6 @@ const LoadableComponent = Loadable({
 
 const LoadableFAQ: React.SFC = () => {
   return <LoadableComponent />;
-}
+};
 
 export default LoadableFAQ;

@@ -6,14 +6,14 @@ import IconPR from './components/IconPR';
 import IcondMerge from './components/IconPRMerged';
 import IconComments from './components/IconComments';
 import { Assignee } from './shared/types';
-import './ContributionItem.css'
+import './ContributionItem.css';
 
 const ContributionItem: React.SFC<Octokit.SearchIssuesAndPullRequestsResponseItemsItem> = (props) => {
   const isIssue = !props.pull_request;
   const className = props.state === 'open' ? 'state-green' : 'state-red';
   const isMerged = props.state === 'merged';
   const tooltipAvatar = `${props.user.login} ${props.assignee ? (props.assignee as unknown as Assignee).login : ''}`;
-  
+
   return (
     <li style={{
       padding: '10px',

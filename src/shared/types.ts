@@ -1,5 +1,4 @@
 import { COLORS } from './constant';
-import { string } from 'prop-types';
 
 /**
  * Only use for snapshot test
@@ -97,24 +96,24 @@ export interface ColorProp {
 // export type IssueOrPRProps = IssuesAndPRsMata['items'][number];
 
 const assignee = {
-  avatar_url: "https://avatars2.githubusercontent.com/u/8052792?v=4",
-  events_url: "https://api.github.com/users/sheetalkamat/events{/privacy}",
-  followers_url: "https://api.github.com/users/sheetalkamat/followers",
-  following_url: "https://api.github.com/users/sheetalkamat/following{/other_user}",
-  gists_url: "https://api.github.com/users/sheetalkamat/gists{/gist_id}",
-  gravatar_id: "",
-  html_url: "https://github.com/sheetalkamat",
+  avatar_url: 'https://avatars2.githubusercontent.com/u/8052792?v=4',
+  events_url: 'https://api.github.com/users/sheetalkamat/events{/privacy}',
+  followers_url: 'https://api.github.com/users/sheetalkamat/followers',
+  following_url: 'https://api.github.com/users/sheetalkamat/following{/other_user}',
+  gists_url: 'https://api.github.com/users/sheetalkamat/gists{/gist_id}',
+  gravatar_id: '',
+  html_url: 'https://github.com/sheetalkamat',
   id: 8052792,
-  login: "sheetalkamat",
-  node_id: "MDQ6VXNlcjgwNTI3OTI=",
-  organizations_url: "https://api.github.com/users/sheetalkamat/orgs",
-  received_events_url: "https://api.github.com/users/sheetalkamat/received_events",
-  repos_url: "https://api.github.com/users/sheetalkamat/repos",
+  login: 'sheetalkamat',
+  node_id: 'MDQ6VXNlcjgwNTI3OTI=',
+  organizations_url: 'https://api.github.com/users/sheetalkamat/orgs',
+  received_events_url: 'https://api.github.com/users/sheetalkamat/received_events',
+  repos_url: 'https://api.github.com/users/sheetalkamat/repos',
   site_admin: false,
-  starred_url: "https://api.github.com/users/sheetalkamat/starred{/owner}{/repo}",
-  subscriptions_url: "https://api.github.com/users/sheetalkamat/subscriptions",
-  type: "User",
-  url: "https://api.github.com/users/sheetalkamat",
+  starred_url: 'https://api.github.com/users/sheetalkamat/starred{/owner}{/repo}',
+  subscriptions_url: 'https://api.github.com/users/sheetalkamat/subscriptions',
+  type: 'User',
+  url: 'https://api.github.com/users/sheetalkamat',
 };
 
 export type Assignee = typeof assignee;

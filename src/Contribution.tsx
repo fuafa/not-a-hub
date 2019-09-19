@@ -6,33 +6,33 @@ import Octokit from '@octokit/rest';
 
 const octokit = new Octokit();
 type FeedType = 'pr' | 'issue' | 'all';
-type FeedError = {
+interface FeedError {
   message: string;
   documentation_url: string;
-};
+}
 const PER_PAGE = 30;
 
 type ActionType =
     'FETCH_FEEDS'
   | 'FETCH_FAIL'
   | 'FETCH_MORE_FEEDS'
-  | 'FETCH_MORE_FAIL'
+  | 'FETCH_MORE_FAIL';
 
 type ActionTypeWithPayLoad =
     'FETCH_SUCCESS'
-  | 'FETCH_MORE_SUCCESS'
+  | 'FETCH_MORE_SUCCESS';
 
 type Action = {
-  kind: ActionType,
+  kind: ActionType;
 } | {
-  kind: ActionTypeWithPayLoad,
-  payload: Octokit.SearchIssuesAndPullRequestsResponse
-}
+  kind: ActionTypeWithPayLoad;
+  payload: Octokit.SearchIssuesAndPullRequestsResponse;
+};
 
-type State = {
-  loading: boolean,
-  loadingMore: boolean,
-  data?: Octokit.SearchIssuesAndPullRequestsResponse,
+interface State {
+  loading: boolean;
+  loadingMore: boolean;
+  data?: Octokit.SearchIssuesAndPullRequestsResponse;
 }
 
 const reducer: Reducer<State, Action> = (preState, action) => {
@@ -64,8 +64,10 @@ const reducer: Reducer<State, Action> = (preState, action) => {
         loading: false,
         data: {
           // FETCH_MORE means preState.data !== undefined, so use a ! is ok here.
+          // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
           total_count: preState.data!.total_count + action.payload.total_count,
           items: [
+            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
             ...preState.data!.items,
             ...action.payload.items
           ].sort((a, b) => a.updated_at > b.updated_at ? -1 : 0),
@@ -77,7 +79,7 @@ const reducer: Reducer<State, Action> = (preState, action) => {
         ...preState,
         loadingMore: false,
       };
-  };
+  }
 };
 
 const Contribution: React.SFC<RouteComponentProps> = () => {
@@ -109,7 +111,8 @@ const Contribution: React.SFC<RouteComponentProps> = () => {
         kind: 'FETCH_MORE_SUCCESS',
         payload: feeds.data,
       });
-    } catch (err) {
+    }
+    catch (err) {
       dispatch({ kind: 'FETCH_MORE_FAIL' });
       message.error(err.message);
     }
@@ -119,10 +122,10 @@ const Contribution: React.SFC<RouteComponentProps> = () => {
    * Bind scroll
    */
   useEffect(() => {
-    function onScroll() {
+    function onScroll(): void {
       if (document.documentElement.scrollHeight <= window.scrollY + document.body.clientHeight && hasRest) {
-        let is = type === 'all' ? '' : `+is${type}`;
-        let q = `author:fuafa${is}`;
+        const is = type === 'all' ? '' : `+is${type}`;
+        const q = `author:fuafa${is}`;
         getMoreData(q);
       }
     }
@@ -173,7 +176,7 @@ const Contribution: React.SFC<RouteComponentProps> = () => {
               return {
                 ...item,
                 state: 'merged'
-              }
+              };
             }),
             ...unMerged.data.items,
             ...issue.data.items
@@ -216,7 +219,7 @@ const Contribution: React.SFC<RouteComponentProps> = () => {
       });
   }, [type]);
 
-  const LoadingCompoent = (x: boolean) => x && <Icon type="loading" spin></Icon>
+  const LoadingCompoent = (x: boolean) => x && <Icon type="loading" spin></Icon>;
 
   function onChangeRadio(value: FeedType) {
     dispatch({ kind: 'FETCH_FEEDS' });
@@ -226,8 +229,8 @@ const Contribution: React.SFC<RouteComponentProps> = () => {
   return (
     <>
       <Radio.Group onChange={(e) => onChangeRadio(e.target.value)} defaultValue='all'>
-        {['all', 'pr', 'issue'].map(value => 
-          <Radio.Button value={value}>{value} {state.loading ? LoadingCompoent(type === value) : ''}</Radio.Button>
+        {['all', 'pr', 'issue'].map(value =>
+          <Radio.Button key={value} value={value}>{value} {state.loading ? LoadingCompoent(type === value) : ''}</Radio.Button>
         )}
       </Radio.Group>
       <ul style={{

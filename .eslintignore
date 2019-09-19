@@ -1,0 +1,5 @@
+/build/**
+/task/**
+/src/__tests__/**
+/src/serviceWorker.ts
+config-overrides.js

@@ -7,7 +7,7 @@ interface Props {
   tag: string;
   className: string;
   color?: string;
-};
+}
 
 const LinkTag: React.SFC<Props> = (props) => {
   return (

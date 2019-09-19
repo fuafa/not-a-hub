@@ -29,7 +29,7 @@ const ProgressBar: React.SFC = () => {
         border: '1px solid #ff816f',
       }}></span>
     </div>
-  )
+  );
 };
 
 export default ProgressBar;

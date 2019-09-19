@@ -18,7 +18,8 @@ const { Header, Footer, Content } = Layout;
 Posts.sort((a, b) => {
   if (a.date > b.date) {
     return -1;
-  } else {
+  }
+  else {
     return 0;
   }
 });

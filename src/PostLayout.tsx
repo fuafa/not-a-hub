@@ -2,10 +2,10 @@ import React, { lazy, Suspense, forwardRef, ForwardRefExoticComponent, useState,
 import { Route, RouteComponentProps } from 'react-router-dom';
 import { Icon } from 'antd';
 import PostList, { PostListProp } from './PostList';
-import { camel2dash } from './utils/utils'
+import { camel2dash } from './utils/utils';
 
-type RouterParams = {
-  post_title: string
+interface RouterParams {
+  post_title: string;
 }
 
 const Post = lazy(() => import('./Post'));
@@ -45,7 +45,7 @@ const PostLayout: React.SFC<RouteComponentProps<RouterParams> & PostListProp> = 
       />
     </>
   );
-}
+};
 
 export default PostLayout;
 

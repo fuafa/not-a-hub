@@ -1,3 +1,4 @@
+/* eslint-disable no-null/no-null */
 import React from 'react';
 import './Tutor.css';
 
@@ -6,7 +7,7 @@ interface PropSquare {
   onClick: () => void;
 }
 
-type Squares = Array<'X' | 'O' | null>;
+type Squares = ('X' | 'O' | null)[];
 function calculateWinner(squares: Squares): 'X' | 'O' | null {
   const lines = [
     [0, 1, 2],
@@ -36,10 +37,10 @@ const Square: React.SFC<PropSquare> = ({ onClick: handleClick, value }) => (
   </button>
 );
 
-type PropsBoard = {
+interface PropsBoard {
   squares: Squares;
   onClick: (i: number) => void;
-};
+}
 
 class Board extends React.Component<PropsBoard> {
   renderSquare(i: number) {
@@ -73,14 +74,14 @@ class Board extends React.Component<PropsBoard> {
   }
 }
 
-type HistoryItem = {
+interface HistoryItem {
   squares: Squares;
-};
-type StateGame = {
+}
+interface StateGame {
   xIsNext: boolean;
-  history: Array<HistoryItem>;
+  history: HistoryItem[];
   stepNumber: number;
-};
+}
 const initStates = {
   xIsNext: true,
   history: [
@@ -134,7 +135,8 @@ export default class Game extends React.Component<{}, StateGame> {
 
     if (winner) {
       status = `Winner is : ${winner}`;
-    } else {
+    }
+    else {
       status = `Next player is : ${this.state.xIsNext ? 'X' : 'O'}`;
     }
 

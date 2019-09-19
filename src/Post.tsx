@@ -48,6 +48,6 @@ const Post: React.SFC<PostProps & ColorProp> = props => {
       {html2React(props.content)}
     </>
   );
-}
+};
 
 export default Post;

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, RouteComponentProps } from 'react-router-dom';
 import { Tag, Typography, Divider, Pagination } from 'antd';
 import { PostProps } from './Post';
-import LinkTag from './components/LinkTag'
+import LinkTag from './components/LinkTag';
 import './PostList.css';
 import { camel2dash } from './utils/utils';
 import { COLORS } from './shared/constant';
@@ -10,12 +10,12 @@ import { ColorProp } from './shared/types';
 
 export interface PostListProp {
   posts: PostProps[];
-};
+}
 type ListType = 'all' | 'hidden' | 'todo' | 'completed';
-type PostsRouterParam = {
+interface PostsRouterParam {
   tag?: string;
   page?: string;
-};
+}
 
 
 const PER_PAGE = 5;
@@ -48,13 +48,15 @@ const PostList: React.SFC<RouteComponentProps<PostsRouterParam> & PostListProp &
       .map(tag => tag.toLowerCase())
       .includes(tag)
     );
-  } else {
+  }
+  else {
     posts = [...props.posts];
   }
 
   if (listType === 'all') {
     posts = posts.filter(post => post.type !== 'hidden');
-  } else {
+  }
+  else {
     posts = posts.filter(post => post.type === listType);
   }
 

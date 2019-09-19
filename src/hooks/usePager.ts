@@ -4,7 +4,7 @@ export default function usePager(page: number, tag?: string) {
   const [currentPage, setPage] = useState(page);
 
   return [
-    currentPage, 
+    currentPage,
     (value: number) => {
       setPage(value);
       window.history.pushState(

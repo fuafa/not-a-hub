@@ -16,7 +16,7 @@ const FAQ: React.SFC<{}> = props => {
           <ul>
             <li>两种调用方式：</li>
             <li>this.setState({'{}'}): 同步</li>
-            <li>this.setState((state, props) => ({'{}'})): 异步</li>
+            <li>this.setState((state, props) =&gt ({'{}'})): 异步</li>
           </ul>
         </li>
       </ol>
