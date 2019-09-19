@@ -1,17 +1,18 @@
 import React from 'react';
 import { Tooltip } from 'antd';
+import Octokit from '@octokit/rest';
 import IconIssue from './components/IconIssue';
 import IconPR from './components/IconPR';
 import IcondMerge from './components/IconPRMerged';
 import IconComments from './components/IconComments';
-import { IssueOrPRProps } from './shared/types';
+import { Assignee } from './shared/types';
 import './ContributionItem.css'
 
-const ContributionItem: React.SFC<IssueOrPRProps> = (props) => {
+const ContributionItem: React.SFC<Octokit.SearchIssuesAndPullRequestsResponseItemsItem> = (props) => {
   const isIssue = !props.pull_request;
   const className = props.state === 'open' ? 'state-green' : 'state-red';
   const isMerged = props.state === 'merged';
-  const tooltipAvatar = `${props.user.login} ${props.assignee ? props.assignee.login : ''}`;
+  const tooltipAvatar = `${props.user.login} ${props.assignee ? (props.assignee as unknown as Assignee).login : ''}`;
   
   return (
     <li style={{
@@ -41,7 +42,6 @@ const ContributionItem: React.SFC<IssueOrPRProps> = (props) => {
           }}>
             <a href={props.html_url} target='_blank' rel="noopener noreferrer">{props.title}</a>
           </div>
-          {/* TODO: Tags here */}
           <div style={{
             marginRight: 'auto',
             marginLeft: '15px'
@@ -64,7 +64,7 @@ const ContributionItem: React.SFC<IssueOrPRProps> = (props) => {
           <div style={{ marginLeft: '40px' }}>
             <Tooltip placement='bottom' title={tooltipAvatar} mouseEnterDelay={1}>
               <img src={props.user.avatar_url + '&s=40'} alt="avatar" className='avatar' />
-              {props.assignee && <img src={props.assignee.avatar_url + '&s=40'} alt="avatar" className='avatar' />}
+              {props.assignee && <img src={(props.assignee as unknown as Assignee).avatar_url + '&s=40'} alt="avatar" className='avatar' />}
             </Tooltip>
           </div>
           <div style={{

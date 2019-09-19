@@ -4,9 +4,6 @@ import { RouteComponentProps } from 'react-router-dom';
 import { Radio, Icon, message } from 'antd';
 import Octokit from '@octokit/rest';
 
-import { IssuesAndPRsMata } from './shared/types';
-
-
 const octokit = new Octokit();
 type FeedType = 'pr' | 'issue' | 'all';
 type FeedError = {
@@ -29,13 +26,13 @@ type Action = {
   kind: ActionType,
 } | {
   kind: ActionTypeWithPayLoad,
-  payload: IssuesAndPRsMata
+  payload: Octokit.SearchIssuesAndPullRequestsResponse
 }
 
 type State = {
   loading: boolean,
   loadingMore: boolean,
-  data?: IssuesAndPRsMata,
+  data?: Octokit.SearchIssuesAndPullRequestsResponse,
 }
 
 const reducer: Reducer<State, Action> = (preState, action) => {
@@ -104,7 +101,7 @@ const Contribution: React.SFC<RouteComponentProps> = () => {
     }
     dispatch({ kind: 'FETCH_MORE_FEEDS' });
     try {
-      const feeds: Octokit.Response<IssuesAndPRsMata> = await octokit.search.issuesAndPullRequests({
+      const feeds = await octokit.search.issuesAndPullRequests({
         q,
         page
       });
@@ -146,13 +143,13 @@ const Contribution: React.SFC<RouteComponentProps> = () => {
         q += `+is:${type}`;
       }
       if (type !== 'issue') {
-        const merged: Promise<Octokit.Response<IssuesAndPRsMata>> = octokit.search.issuesAndPullRequests({
+        const merged = octokit.search.issuesAndPullRequests({
           q: `${q}+is:merged`
         });
-        const unMerged: Promise<Octokit.Response<IssuesAndPRsMata>> = octokit.search.issuesAndPullRequests({
+        const unMerged = octokit.search.issuesAndPullRequests({
           q: `${q}+is:unmerged`
         });
-        const issue: Promise<Octokit.Response<IssuesAndPRsMata>> =
+        const issue =
           type === 'all'
           ? octokit.search.issuesAndPullRequests({
             q: `${q}+is:issue`
@@ -163,7 +160,7 @@ const Contribution: React.SFC<RouteComponentProps> = () => {
               incomplete_results: false,
               items: []
             }
-          }) as unknown as Promise<Octokit.Response<IssuesAndPRsMata>>;
+          }) as unknown as Promise<Octokit.Response<Octokit.SearchIssuesAndPullRequestsResponse>>;
 
         await Promise.all([
           merged,
