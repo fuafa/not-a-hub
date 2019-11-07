@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useCallback, useReducer, Reducer } from 'react';
-import ContributionItem from './ContributionItem';
 import { RouteComponentProps } from 'react-router-dom';
 import { Radio, Icon, message } from 'antd';
 import Octokit from '@octokit/rest';
+import ContributionItem from './ContributionItem';
 
 const octokit = new Octokit();
 type FeedType = 'pr' | 'issue' | 'all';

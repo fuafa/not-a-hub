@@ -1,12 +1,15 @@
 {
   "parser": "@typescript-eslint/parser",
-  "plugins": ["@typescript-eslint", "jsdoc", "no-null", "import"],
+  "plugins": ["@typescript-eslint", "jsdoc", "no-null", "import", "react-hooks"],
   "extends": [
     "eslint:recommended",
     "plugin:@typescript-eslint/eslint-recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:react/recommended"
   ],
+	"parserOptions": {
+		"project": "tsconfig.json"
+	},
   "rules": {
     "@typescript-eslint/adjacent-overload-signatures": "error",
     "@typescript-eslint/array-type": "error",
@@ -23,6 +26,7 @@
     "@typescript-eslint/prefer-for-of": "error",
     "@typescript-eslint/prefer-function-type": "error",
     "@typescript-eslint/prefer-namespace-keyword": "error",
+    "@typescript-eslint/no-unnecessary-type-assertion": "error",
 
     "quotes": "off",
     "@typescript-eslint/quotes": ["error", "single", { "avoidEscape": true, "allowTemplateLiterals": true }],
@@ -102,6 +106,8 @@
     "use-isnan": "error",
 
     // react
-    "react/prop-types": [0]
+    "react/prop-types": [0],
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn"
   }
 }

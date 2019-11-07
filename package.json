@@ -28,6 +28,7 @@
     "react-scripts": "^3.0.1",
     "react-test-renderer": "^16.8.6",
     "redux": "^4.0.1",
+    "rxjs": "^6.5.3",
     "source-map-explorer": "^1.8.0",
     "typescript": "^3.5.3"
   },
@@ -77,6 +78,7 @@
     "eslint-plugin-jsdoc": "^15.9.2",
     "eslint-plugin-no-null": "^1.0.2",
     "eslint-plugin-react": "^7.14.3",
+    "eslint-plugin-react-hooks": "^2.1.2",
     "gh-pages": "^2.0.1",
     "husky": "^3.0.4",
     "nodemon": "^1.18.10",
